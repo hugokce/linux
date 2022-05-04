@@ -15,6 +15,29 @@ ls ; ls /etc
 Ayrıca && ile de birden fazla komutu aynı anda çalıştırabiliriz
 apt-get update && apt-get upgrade en çok kullanılan güncelleme komutudur
 
+Diğer komut ise || solda yer alan ilk komut başarısız olursa pipe'ın | sağında yer alan komutu çalıştır diyebiliriz
+abc || cd /home
+
+5) /etc/profile altında kabuğun genel profil ayarları bulunmaktadır.
+cat /etc/profile ile dosyanın içinde yer alan bilgileri görebiliriz
+
+cat /etc/bash.bashrc bu komutla da shell başlatma komutlarını görebiliriz
+
+Yardım Komutları
+6) ls --help veya help cd şeklinde komut hakkında bilgi alabiliriz
+man ls komutu ile yardım sayfasına gidebiliriz
+whatis bu komut ile ilgili yardım nerede yer almaktadır onu gösterir
+whatis echo
+whatis -w cal* ile de cal ile başlayan komutların yardımlarını görebiliriz
+
+man -k printf aynı komut apropos printf ile de sağlanır
+
+Bilgi Alma Komutları
+7)
+
+
+
+
 
 
 Listeleme
