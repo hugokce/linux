@@ -33,11 +33,66 @@ whatis -w cal* ile de cal ile başlayan komutların yardımlarını görebiliriz
 man -k printf aynı komut apropos printf ile de sağlanır
 
 Bilgi Alma Komutları
-7) 
+7) lsb_release -a komutu ile linux dağıtım adını öğrenebiliriz
+cat /etc/*release ile detaylı bilgi alınabilir
 
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
+NAME="Ubuntu"
+VERSION="20.04.3 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.3 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
 
+8) cat /etc/issue   linuxun adını görmek için kullanılır
+Ubuntu 20.04.3 LTS \n \l
 
+9) uname -a   ile kernel versiyonunu öğreniriz
+Linux 377c68a65b76 5.10.16.3-microsoft-standard-WSL2 #1 SMP Fri Apr 2 22:23:49 UTC 
+2021 x86_64 x86_64 x86_64 GNU/Linux
 
+uname -n 
+uname -m
+uname -r komutları da kullanıbilir 
+
+10) cal komutu ile takvim görüntülenir
+cal 1 1977 ile Ocak 1977 görüntülenir
+cal 2030
+
+11) date komutu o anki tarihi verir
+
+12) hostname komutu ile makine adını öğrenebiliriz
+
+13) w, who ya da whoami who am i 
+w           aktif bağlı kullanıcıları gösterir
+who         sisteme login olduğumuz kullanıcıyı verir
+who -b      sistem en son ne zaman açıldı bilgisini verir
+who -r      runlevel sistemin açılış seviyesini verir
+whoami      şu anda hangi kullanıcı ile çalıştığımızı gösterir
+
+14) uptime sistem ne zamandır açık bilgisini görebiliriz
+
+15) whereis ls komutu ile ls komutunun çalıştırılabilir dosyası, kaynak ve yardım dosyalarının konumunu öğrenmemizi sağlar.
+ls: /usr/bin/ls
+whereis -b  ile çalıştırılabilir dosya komutunun yerini görebiliriz
+whereis -m  ile man dosyasının yerini görebiliriz
+whereis -s  komutun kaynak kodunun yerini görebiliriz
+
+16) which cat komutu ile yol bilgisini öğrenebiliriz
+/usr/bin/cat
+
+17) locate komutu ile bir dosyanın nerede olduğunu,  hangi dizin altında olduğunu görebiliriz
+örneğin /etc dizini altında yer alan conf dosyalarını bulalım bunu grep ile yapalım
+locate conf | grep /etc 
 
 
 Listeleme
