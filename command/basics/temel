@@ -1,3 +1,22 @@
+Docker üzerinde oluşturulan ubuntu containerı öncelikle çalıştıralım
+docker start ubuntu_container
+sonra docker desktoptaki CLI üzerinden komutları yazmaya başlayabiliriz 
+Ya da Powershellden docker exec -it containerID /bin/bash ile container ile çalışmaya başlayabiliriz
+1) echo $SHELL                     kabuk bilgisini döner
+/bin/bash
+
+2) echo $PATH                      pathi gösterir
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+3) printenv ya da env ile ortam değişkenleri karşımıza çıkar
+
+4) Noktalı Virgül (;) ile birden fazla komutu yazabiliriz
+ls ; ls /etc
+Ayrıca && ile de birden fazla komutu aynı anda çalıştırabiliriz
+apt-get update && apt-get upgrade en çok kullanılan güncelleme komutudur
+
+
+
 Listeleme
 ls
 ls -a
