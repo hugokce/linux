@@ -34,7 +34,7 @@ man -k printf aynı komut apropos printf ile de sağlanır
 
 Bilgi Alma Komutları
 7) lsb_release -a komutu ile linux dağıtım adını öğrenebiliriz
-cat /etc/*release ile detaylı bilgi alınabilir
+cat /etc/release ile detaylı bilgi alınabilir
 
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
@@ -152,21 +152,108 @@ Bu numaraların açıklamalarını alttaki gibi detaylandırabiliriz.(2)
 40	Additional Information
 41	Onboard Device
 
+19) Sanal dosya sistemi proctan bilgi almak için cat /proc/cpuinfo kullanırız
+cat /proc/cpuinfo
+cat /proc/meminfo
 
+ls /proc/ ile baktığımızda birçok klasör ve dosyanın olduğunu gözlemleriz Buradan adında info olanlara yoğunlaşırsak bir sonraki çıktıyı inceleyebiliriz.(3) 
+1          cmdline    dma          ioports    kpagecgroup  misc          sched_debug  sysvipc      vmstat
+35         config.gz  driver       irq        kpagecount   modules       schedstat    thread-self  zoneinfo
+9          consoles   execdomains  kallsyms   kpageflags   mounts        self         timer_list
+acpi       cpuinfo    filesystems  kcore      loadavg      mtrr          softirqs     tty
+buddyinfo  crypto     fs           key-users  locks        net           stat         uptime
+bus        devices    interrupts   keys       mdstat       pagetypeinfo  swaps        version
+cgroups    diskstats  iomem        kmsg       meminfo      partitions    sys          vmallocinfo
 
+find /proc -name *info
+/proc/fs/ext4/sda/fc_info
+/proc/fs/ext4/sda/es_shrinker_info
+/proc/fs/ext4/sdb/fc_info
+/proc/fs/ext4/sdb/es_shrinker_info
+/proc/fs/ext4/sdc/fc_info
+/proc/fs/ext4/sdc/es_shrinker_info
+/proc/fs/jbd2/sda-8/info
+/proc/fs/jbd2/sdb-8/info
+/proc/fs/jbd2/sdc-8/info
+/proc/sys/net/ipv6/conf/all/accept_ra_pinfo
+/proc/sys/net/ipv6/conf/default/accept_ra_pinfo
+/proc/sys/net/ipv6/conf/eth0/accept_ra_pinfo
+/proc/sys/net/ipv6/conf/lo/accept_ra_pinfo
+/proc/sys/net/ipv6/conf/sit0/accept_ra_pinfo
+/proc/cpuinfo
+/proc/meminfo
+/proc/zoneinfo
+/proc/buddyinfo
+/proc/vmallocinfo
+/proc/pagetypeinfo
+/proc/1/task/1/fdinfo
+/proc/1/task/1/mountinfo
+/proc/1/fdinfo
+/proc/1/mountinfo
+/proc/9/task/9/fdinfo
+/proc/9/task/9/mountinfo
+/proc/9/fdinfo
+/proc/9/mountinfo
+/proc/37/task/37/fdinfo
+/proc/37/task/37/mountinfo
+/proc/37/fdinfo
+/proc/37/mountinfo
 
+20) fdisk -l disk bölümlerini görmemizi sağlar.
 
+21) df disk kullanımını verir.
+df
+df -h
+df -T
 
+22) du disk boyutlarını gösterir du disk usage. h parametresi ile de çıktıyı okumayı kolaylaştırır human readable  
+du
+du -h /etc/
 
+23) free ile bellek miktarını görebiliriz
+free
+free -m
 
+24) hdparm ile harddisk ile ilgili bilgi almak için kullanırız.
+hdparm /dev/sda
+hdparm -Tt /dev/sda1   bu parametreler ile disk performans bilgilerini elde edebiliriz
 
+25) modinfo kernel modülleriyle ilgili bilgi almak için kullanılır
+modinfo
+modinfo cdrom
 
+modül listesini görmek için lsmod kullanılır.
 
+26) stat dosya ya da dizin durumu hakkında bilgi almak için kullanılır.
+stat /etc
+stat -f /etc
 
+27) vmstat sistemin genel durumunu görmek için kullanılır.
+vmstat
+vmstat 3 5 dersek 3 saniyede bir güncellenecek ve 5 satır ile sonlanacak şekilde çıktı göster diyebiliriz
 
+28) history komut satırında yazılan kodların geçmişini görmemizi sağlar. komut satırında yazılan kodlar .bash_history dosyasına kaydedilir. 
+history
+history için 40 nolu satırdaki komut hostname olsun 
+!40 dersek hostname komutunu çalıştırır
 
+!! dersek de en son kullandığımız komutu tekrar çalıştırır.
 
+!cat dersek de daha önce kullanılan cat komutunu tekrar çalıştırırız.
 
+!cat:p dersek cat komutu daha önce nasıl yazıldı öğrenebiliriz
+
+history 5 dersek son 5 komutu ekrana yazdırırız.
+
+echo $HISTSIZE komutu ile history olarak kaç satır komutun saklandığını görebiliriz
+örneğin 1000 dönerse son 1000 satır kodu saklıyor demektir.
+Bu 1000 değerini değiştirmek istersek .bashrc altındaki HISTSIZE parametresini değiştirmemiz gerekiyor.
+
+Terminaldeyken CTRL+R dersek reverse search çıkar bu çıkan kısımda ilk yazdığımız ifadelerle arama yapar örneğin ca dersek ca içeren komutları gösterir.
+
+Dizinler Klasörler Arasında Gezinme Komutları
+
+29)
 
 
 
@@ -195,3 +282,4 @@ ________________________________________________________________________________
 Kaynak
 (1)  Demirez, Kemal Linux Komut Satırı Abaküs Yayınlar
 (2)  https://linux.die.net/man/8/dmidecode
+(3)  https://www.yusufsezer.com.tr/linux-arama-komutlari/
