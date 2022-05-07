@@ -251,9 +251,76 @@ Bu 1000 değerini değiştirmek istersek .bashrc altındaki HISTSIZE parametresi
 
 Terminaldeyken CTRL+R dersek reverse search çıkar bu çıkan kısımda ilk yazdığımız ifadelerle arama yapar örneğin ca dersek ca içeren komutları gösterir.
 
-Dizinler Klasörler Arasında Gezinme Komutları
+Dizinler Klasörler Arasında Gezinme Listeleme Komutları
 
-29)
+29) Root kullanıcının dizini / altında yer alır. Her kullanıcının dizini home altında yer alır home/user1 home/user2 şeklindedir
+pwd print working directoryden gelir ve o anda hangi dizinde isek o klasörün adresini verir.
+pwd sonucunda şu anda docker imageda rootta olduğumuz için / dizinini verdi
+homea dönersek cd /home sonrasında pwd dersek /home olarak bize çıktı dönecektir
+
+30) cd komutu change directoryden gelmektedir. Bulunduğumuz dizini değiştirmemize yarar.
+cd /usr/share dersek share dizini altına gideriz. 
+herhangi bir dizindeyken cd dersek ana dizinimize döneriz şimdi cd diyelim sonra pwd dediğimizde /root döndüğünü gözlemleriz.
+
+Bir üst dizine çıkmak için cd .. deriz. İki dizin üste çıkmak için cd ../.. deriz.
+cd - dersek çalıştığımız iki dizin arasında hızlıca geçebiliriz.
+
+31) pushd ve popd komutları
+home dizininde olduğumuzu varsayalım pushd /etc dersek dizinler arasında geçiş yapabilirken popd ile dizinler arası tek tek geçiş yapabiliyoruz.
+popd dersek /home dizinine döneriz. 
+pushd /etc
+pushd /var  dersek var etc home arasında geçiş yapılabilir.
+popd dersek de önce etc sonra home dizinine geçiş yapılabilir.
+
+dirs -v komutu ile açık dizinleri görebiliriz.
+
+32) ls komutu ile dizindeki klasörleri, dosyaları listeleriz.
+
+ls -l ile detaylı olarak bilgi ediniz.
+ls -la ile gizli dosyaları da görebiliriz.
+drwx------ 1 root root 4096 Jan 28 20:44 .
+drwxr-xr-x 1 root root 4096 Jan 28 20:18 ..
+-rw------- 1 root root 1153 May  5 12:06 .bash_history
+-rw-r--r-- 1 root root 3106 Dec  5  2019 .bashrc
+-rw-r--r-- 1 root root  161 Dec  5  2019 .profile
+
+Burada d ile başlayanlar directory klasör diğer - ile başlayanlar dosya olduğunu anlarız.
+
+ls -R  recursive alt klasöre inen mantıkla dosya ve klasörleri gösterir.
+
+ls -r dersek çıktıyı tersten göstermesini sağlarız
+ls- S ile dosya büyüklüğüne göre sıralar
+ls -F dosya türlerine göre işaret vererek sıralar.
+* çalıştırılabilir dosya
+@ sembolik link
+/ dizin
+
+adduser.conf            dpkg/         inputrc        lsb-release    opt/         rc3.d/       skel/
+alternatives/           e2scrub.conf  issue          machine-id     os-release@  rc4.d/       subgid
+apt/                    environment   issue.net      magic          pam.conf     rc5.d/       subuid
+bash.bashrc             fstab         kernel/        magic.mime     pam.d/       rc6.d/       sysctl.conf
+bindresvport.blacklist  gai.conf      ld.so.cache    mailcap        passwd       rcS.d/       sysctl.d/
+cron.d/                 group         ld.so.conf     mailcap.order  profile      resolv.conf  systemd/
+cron.daily/             gshadow       ld.so.conf.d/  mime.types     profile.d/   rmt@         terminfo/
+debconf.conf            host.conf     legal          mke2fs.conf    python3.8/   security/    update-motd.d/
+debian_version          hostname      libaudit.conf  mtab@          rc0.d/       selinux/     vim/
+default/                hosts         login.defs     networks       rc1.d/       shadow       xattr.conf
+deluser.conf            init.d/       logrotate.d/   nsswitch.conf  rc2.d/       shells
+
+ls -i düğüm numarasını inode verir
+
+ls -lh dosya boyutlarını daha okunaklı olarak gösterir.
+ls -lt dosyaları en son yapılan değişikliğe göre sıralayıp gösterir.
+
+ls -d .*  komutu ile gizli dosyaları verir.
+ls -d .[!.]* ile . ve .. dizinlerinin görüntülenmesini istemiyorsak kullanırız.
+ls -d .b* ile b ile başlayan gizli dosyaları gösteririz.
+ls -d .[!m]* komutu ile m ile başlayanlar hariç diğer dosyaları gösteririz.
+ls .. dersek bir üst dizini ls ../.. iki üst dizinin içeriğini listeleriz.
+
+Dosya İşlemleri
+
+33) 
 
 
 
@@ -264,17 +331,6 @@ Dizinler Klasörler Arasında Gezinme Komutları
 
 
 
-
-
-
-
-
-
-
-Listeleme
-ls
-ls -a
-ls -la
 
 ______________________________________________________________________________________________________________________________________________________________
 ______________________________________________________________________________________________________________________________________________________________
