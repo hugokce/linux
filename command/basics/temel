@@ -320,7 +320,40 @@ ls .. dersek bir üst dizini ls ../.. iki üst dizinin içeriğini listeleriz.
 
 Dosya İşlemleri
 
-33) 
+33) touch komutunu dosya oluşturmada kullanırız.
+touch test dersek test adında bir dosya oluştururuz.
+varolan bir dosyaya touch dersek güncelleme tarihini de değiştirmiş oluruz. 
+touch users.txt 
+
+34) cat komutu ile dosyayı açıp içeriğini görebiliriz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
