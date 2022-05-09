@@ -415,7 +415,77 @@ wc -w kelime sayısını bulmada kullanılır
 wc notlar1 dersek 
  2  4 19 notlar1    çıktısını verir. 2 satır 4 kelime 19 karakter demektir.
 
-45) nl 
+45) nl komutu ile dosya çıktısına satır numarası verebiliriz.
+nl notlar1 | head -n 2 dersek önce satır numarası ver sonra da 2 satır göster demiş oluruz
+nl notlar1 | tail -n 2 sondan 2 satır döner
+
+46) pr komutu ile dosyanın içeriğini sayfalara böleriz ve o şekilde görüntüleriz. Çıktı alırken kolaylık sağlamaktadır
+pr notlar1 şeklinde kullanılır.
+
+47) paste komutu ile iki dosyanın içeriğini yan yana görüntülemek için kullanırız.
+paste LISTA LISTB dersek iki dosyanın çıktısı yan yana görüntülenir.
+Bu çıktıyı başka bir dosyaya yazmak istersek de 
+paste LISTA LISTB > LISTC şeklinde yapabiliriz. 
+
+48) grep komutu ile dosya içerisinde ya da bir komut çıktısında bir ifade arayabiliriz. 
+-v eklersek aradığımız ifade harici kelimeleri verir
+-i eklersek büyük küçük harf ayrımı yapmaz
+-r eklersek ilgili dizinin alt dizinlerinde de arama yapar.
+-n eklersek aranan kelimenin geçtiği satırın numarasını da gösterir.
+-c eklersek aradığımız kelimenin kaç kez geçtiğini gösterir.
+-l eklersek şablona uygun satırların bulunduğu dosyaların adını listeler.
+
+İçinde admin geçen satırları listeyelim
+grep admin /etc/passwd ya da 
+cat /etc/passwd | grep admin 
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+
+cat /etc/passwd | grep -ni GAMES
+6:games:x:5:60:games:/usr/games:/usr/sbin/nologin
+
+Görüldüğü gibi 6 nolu satırda games bulduk. GAMES yazdık -i ile games karşımıza geldi
+
+grep -ri aranankelime dizin komutu ile recursive alt dizinlere de bak
+grep -c aranankelime dizin  komutu ile kaç kere o kelime geçiyor bakabiliyoruz
+
+49) cut komutu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
