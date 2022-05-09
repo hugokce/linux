@@ -377,19 +377,45 @@ space tuşuna basılırsa sayfa sayfa ilerler, bir önceki sayfaya dönmek için
 37) less komutu da more komutu gibi uzun dosya içeriğini ekrana yazdırmak için kullanılır. Yine space tuşuna basılırsa sayfa sayfa ilerler, 
 bir önceki sayfaya dönmek için b tuşuna basılır. Çıkmak için ise q tuşuna basılır.
 
+38) head komutu ile dosyanın başındaki satırları görebiliriz örneğin head -n 10 dersek ile 10 satırı ekrana yazdırır.
 
+39) tail komutu ile dosyanın sonundaki satırları görebiliriz yine aynı şekilde tail -n 5 deyip son 5 satırı ekrana yazdırabiliriz.
 
+head ve tail için herhangi bir parametre vermezsek head için ilk 10 tail için son 5 satırı ekrana yansıtır
 
+40) tee komutu ile içine yazmak istediğimiz texti ekrana yazdırıp adını belirttiğimiz dosyaya da ekler
+tee notlar1 deyip
+Ahmet 90
+Mehmet 90
+dersek notlar dosyasına bu texti ekler.
+tee notlar1
+Ahmet 90
+Ahmet 90   bu ekrana çıktı olarak verdiği ifade
+Mehmet 90
+Mehmet 90  bu ekrana çıktı olarak verdiği ifade
+root@377c68a65b76:/# cat notlar1
+Ahmet 90
+Mehmet 90
 
+41) tac komutu cat'in tersidir dosya içeriğini sondan başa doğru ekrana yazdırır.
 
+42) rev komutu ile ekrana yazdırılmak istenen satırlar tersten gösterilir.
+rev notlar1
+09 temhA
+09 temheM
 
+43) sort komutu ile dosya çıktısını alfabetik olarak ekrana yazdırabiliriz.
+sort notlar1
+sort -r notlar1 dersek de alfabeye tersten başlayıp ekrana yazdırır.
 
+44) wc komutu wordcount demektir ve dosya içindeki satır, karakter ya da kelime sayılarını bulmak için kullanılır
+wc -l satır için
+wc -c karakter için
+wc -w kelime sayısını bulmada kullanılır
+wc notlar1 dersek 
+ 2  4 19 notlar1    çıktısını verir. 2 satır 4 kelime 19 karakter demektir.
 
-
-
-
-
-
+45) nl 
 
 
 
