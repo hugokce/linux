@@ -326,19 +326,56 @@ varolan bir dosyaya touch dersek güncelleme tarihini de değiştirmiş oluruz.
 touch users.txt 
 
 34) cat komutu ile dosyayı açıp içeriğini görebiliriz
+Ayrıca cat > test deyip istediğimiz texti yazarsak test dosyası içine bunu kaydeder akabinde cat test dersek bu test dosyası içine yazdığımız yazıyı görebiliriz.
+Dosya içi boş ise bu > yönlendirici ile yazdığımız yazıyı dosyaya yazar. İçi doluyla siler ve bu yeni yazıyı içine yazar. Ancak eklensin istersek >> kullanmalıyız.
+cat >> test2
+Notlar dersek en son satıra bu notlar yazısını ekler. cat test2 deyince bu Notlar yazımızı görebiliriz.
 
+cat komutu yanına -A dersek satır sonlarını $ ile tab varsa bunu da ^| ile gösterir.
 
+Yine dosya içindeki küçük harfli yazıları büyük harfe çevirerek göstermek istersek şu komutu kullanırız.
+cat test1 | tr 'a-z' 'A-Z'  bu komut ile karakterler büyük harfle gösterilir ancak dosya içinde herhangi bir değişiklik olmaz.
+| Pipe komutundan biraz bahsetmek gerekirse soldaki komutla cat test1 okunan değerler | sağına verilir. Sonra pipeın sağındaki işlem gerçekleştirilir.
 
+cat ile okuma yaparken satırlara numara vermek istersek
+cat -n /etc/passwd demek yeterli olacaktır.
 
+cat -n /etc/passwd
+1  root:x:0:0:root:/root:/bin/bash
+2  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+3  bin:x:2:2:bin:/bin:/usr/sbin/nologin
 
+35) echo komutu ile ekrana yazdığımız texti çıktı olarak verebiliriz.
+echo "master of linux" > linuxcmd1 bu şekilde yazdığımız kod ile linuxcmd1 adlı dosyaya yazdığımız texti eklemiş oluruz.
+cat komutunda olduğu gibi içine eklemek istersek echo "master of linux" >> linuxcmd1 kullanmalıyız
 
+pip komutunun yardımıyla herhangi bir listeleme çıktısını da dosyaya şu şekilde yazabiliriz.
+ls -l | > list
+ls ile echo * komutları aynı işlevi görür.
+echo t* ile t ile başlayan dosyaları ekrana yazdırırız.
+echo *d ile sonu d ile biten dosyaları ekrana yazdırırız.
+echo /usr/*/share komutu çıktısı /usr/local/share olarak döner
+echo /usr/*/sh komutu çıktısı /usr/bin/sh olarak döner
+/usr/bin/sh
+echo /usr/*/sh* komutu çıktısı ise alttaki şekilde döner
+/usr/bin/sh /usr/bin/sha1sum /usr/bin/sha224sum /usr/bin/sha256sum /usr/bin/sha384sum /usr/bin/sha512sum /usr/bin/shred 
+/usr/bin/shuf /usr/local/share /usr/sbin/shadowconfig
 
+echo Number_{1..5}   dersek Number_1 Number_2 Number_3 Number_4 Number_5 şeklinde çıktı verir
+echo {Z..A}  çıktısı Z'den A'ya kadar karakterleri çıktı olarak verir.
+echo a{A{1,2},B{3,4}}b çıktısı alttaki gibidir
+aA1b aA2b aB3b aB4b
 
+Ters tırnak işareti içine yazılan karakterler komut olarak algılanır
+echo ls ekrana ls yazdırır ancak şu komut ls çıktısını ekrana gönderir
+echo `ls`
+bin boot dev etc home lib lib32 lib64 libx32 media mnt opt proc root run sbin srv sys testkitap1 tmp usr var
 
+36) more komutu cat komutuna benzer ancak daha geniş çıktı verir ve her entera bastığımızda alt satırlara doğru ilerleyerek ekranda gösterir.
+space tuşuna basılırsa sayfa sayfa ilerler, bir önceki sayfaya dönmek için b tuşuna basılır. Çıkmak için ise q tuşuna basılır.
 
-
-
-
+37) less komutu da more komutu gibi uzun dosya içeriğini ekrana yazdırmak için kullanılır. Yine space tuşuna basılırsa sayfa sayfa ilerler, 
+bir önceki sayfaya dönmek için b tuşuna basılır. Çıkmak için ise q tuşuna basılır.
 
 
 
@@ -369,6 +406,6 @@ ________________________________________________________________________________
 ______________________________________________________________________________________________________________________________________________________________
 
 Kaynak
-(1)  Demirez, Kemal Linux Komut Satırı Abaküs Yayınlar
+(1)  Demirez, Kemal Linux Komut Satırı Abaküs Yayınları
 (2)  https://linux.die.net/man/8/dmidecode
 (3)  https://www.yusufsezer.com.tr/linux-arama-komutlari/
