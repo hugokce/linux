@@ -500,9 +500,17 @@ alttaki şekilde dönüş sağlar.
 find /etc -name *apache*  komutu ile adında apache yazan dosyaları arıyoruz.
 
 Aramada işimizi kolaylaştıran parametrelerden biraz bahsedelim
+perm 755 ile erişim izni 755 olan dosya ve dizinleri
+type f ile dosyaları
+type d ile dizinleri
+size+100K boyutu 100kbytetan büyük olanları listeler
+ctime 3 tam 3 gün önce değişikliğe uğramış dosyaları listeler.
+-ctime -7 kodu 7 günden daha kısa süre önce değişikliğe uğramış dosya ve dizinleri listeler
+-ctime +7 kodu 7 günden daha uzun süre önce değişikliğe uğramış dosya ve dizinleri listeler
+find /root -type f -name '*.txt'
+find . -name '*.jpg' -mtime +90 -print   90 gün önce değişikliğe uğramış jpg uzantılı dosyaları liste dedik
 
-
-
+54) exec komutu 
 
 
 
