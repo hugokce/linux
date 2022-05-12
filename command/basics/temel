@@ -1,7 +1,7 @@
 Docker üzerinde oluşturulan ubuntu containerı öncelikle çalıştıralım
 docker start ubuntu_container
 sonra docker desktoptaki CLI üzerinden komutları yazmaya başlayabiliriz 
-Ya da Powershellden docker exec -it containerID /bin/bash ile container ile çalışmaya başlayabiliriz
+Ya da Powershellden docker exec -it containerID /bin/bash ile container ile çalışmaya başlayabiliriz. containerID'yi bulmak için docker ps kullanılabilir.
 1) echo $SHELL                     kabuk bilgisini döner
 /bin/bash
 
@@ -512,15 +512,29 @@ find . -name '*.jpg' -mtime +90 -print   90 gün önce değişikliğe uğramış
 
 54) exec komutu 
 
+find komutu ile bulduğumuz dosyaları silmek istersek find komutu yanına exec rm diyebiliriz.
+find /home/depo -name *.jpg -exec rm {} \; komutu ile jpg dosyaları bulup silebiliriz.
+
+55) xargs komutu da yine find komutu ile kullanılabilir. exec ile benzer işler yapabilir. 
+xargs kendisine girdi olarak verilen verileri tek tek kendisinden sonraki programa argüman olarak verir.
+
+ls *.txt | xargs rm  komutu ile bulunduğumuz dizinde yer alan txt dosyaları bul ve sil demiş olduk
+
+find / -name *.jpg -type f -print | xargs tar -cvzf fotolar.tar.gz komutuyla root dizindeki jpg dosyaları bulduk ve fotolar.tar.gz dosyasında sıkıştırılmış
+bir şekilde arşivledik.
+
+find /etc -name "*.conf" | xargs ls -l
+alttaki şekilde döner.
+-rw-r--r-- 1 root root 3028 Jan  5 16:47 /etc/adduser.conf
+-rw-r--r-- 1 root root 2969 Aug  3  2019 /etc/debconf.conf
+-rw-r--r-- 1 root root  604 Sep 15  2018 /etc/deluser.conf
+-rw-r--r-- 1 root root  685 Feb 14  2020 /etc/e2scrub.conf
+-rw-r--r-- 1 root root 2584 Feb  1  2020 /etc/gai.conf
+-rw-r--r-- 1 root root   92 Dec  5  2019 /etc/host.conf
 
 
-
-
-
-
-
-
-
+Dosya taşıma kopyalama silme komutları
+56) cp komutu copyden gelir. 
 
 
 
