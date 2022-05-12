@@ -449,28 +449,57 @@ grep -ri aranankelime dizin komutu ile recursive alt dizinlere de bak
 grep -c aranankelime dizin  komutu ile kaç kere o kelime geçiyor bakabiliyoruz
 
 49) cut komutu
+İncelemek istediğimiz dosyada bazı satırların belli alanlarını görmek için kullanırız. /etc/passwd dosyasındaki 1 ve 7. alanları incelemek istersek
+cut -d: -f 1,7 /etc/passwd komutu alttaki sonucu verir. -d alanların ayrıldığı yeri, -f ise kaçıncı alanları görmek istediğimizi belirler.
+root:/bin/bash
+daemon:/usr/sbin/nologin
+bin:/usr/sbin/nologin
+sys:/usr/sbin/nologin
 
+Pipe ile şu şekilde kullanırız.
+cat /etc/passwd | cut -d: -f 1,7  komutu da yine aynı sonucu verecektir.
+Head ve tail komutlarını eklemek istersek şu şekilde olabilir.
 
+cut -d: -f 1,7 /etc/passwd | head -n 5 
+tail -n 5 /etc/passwd | cut -d: -f 1,7 
 
+50) tr komutu ile küçük harfleri büyük harfe, büyük harfleri de küçük harfe dönüştürebiliriz.
 
+cat LISTEA | tr a-z A-Z deyince küçük harfler büyük harfe dönüşmüş şekilde gösterilir.
 
+< operatörü de dosyayı girdi olarak alır. bunu uygulayalım
+tr a-z A-Z < LISTEA > YENILISTEA  burada LISTEA'dan değerleri aldık büyük harfe çevirdik ve YENILISTEA'ya yazdık.
+cat LISTEA | tr -d A,e dersek A ve e karakterleri yok sayılır. çıktı olarak da hmet, Mhmt, li, Vli, Zyno görünür.
 
+51) cmp komutu dosyalar arasında karşılaştırma yapmada kullanılır. 
+cmp test1 test2 diyerek bu iki dosyanın karşılaştırmasını yapabiliriz. Çıktısında ilk farklılığın meydana geldiği satır ve byte numaraları gösterilir.
 
+52) diff komutu iki dosyanın karşılatırılmasında kullanılır. 3 dosya karşılaştırılacaksa diff3 kullanılır.
+diff test1 test2
+diff3 test1 test2 test3 ile 3 dosya karşılaştırılır.
+diff komutu yanına -y eklersek alt alta değil yanyana çıktı olarak görebiliriz.
 
+Dizinleri de diff komutu ile karşılaştırabiliriz.
+diff -r /etc/folder1 /etc/folder2
 
+53) find komutu ile adının bir kısmını bilsek de hangi dizinde yer aldığını bulmada kullandığımız dosyalar için kullanırız.
+find dosyayolu arananifade şeklinde kullanılır
 
+find /etc -name *.conf  komutu ile önce dizini sonra -name ile aranacak ifadeyi belirtiriz.
+alttaki şekilde dönüş sağlar.
+/etc/gai.conf
+/etc/xattr.conf
+/etc/ld.so.conf
+/etc/adduser.conf
+/etc/resolv.conf
+/etc/nsswitch.conf
+/etc/libaudit.conf
+/etc/deluser.conf
+/etc/sysctl.d/10-ptrace.conf
 
+find /etc -name *apache*  komutu ile adında apache yazan dosyaları arıyoruz.
 
-
-
-
-
-
-
-
-
-
-
+Aramada işimizi kolaylaştıran parametrelerden biraz bahsedelim
 
 
 
