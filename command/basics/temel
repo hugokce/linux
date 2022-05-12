@@ -534,7 +534,60 @@ alttaki şekilde döner.
 
 
 Dosya taşıma kopyalama silme komutları
+
 56) cp komutu copyden gelir. 
+cp kaynak hedef
+cp dosyaA dosyaB şeklinde kullanılır.
+
+cp etc/dosyaA /home/dosyaB şeklinde kullanılabilir.
+aynı isimli dosya varsa bizi uyarsın istersek -i parametresi ekleyebiliriz. 
+cp -i etc/dosyaA /home/dosyaB   bu komutu çalıştırınca üzerine yazılsın mı diye sorar.
+kopyalamak istediğimiz birden fazla dosyayı da aralarında birer boşluk bırakıp yanyana yazarak ilgili hedef dizine kopyalayabiliriz. 
+cp ornek ornekA ornekB /home gibi
+
+Dizinleri kopyalamak için de -r recursive parametresini eklemek lazım.
+cp -r dizin1 dizin2  burada -r komutu ile altındaki tüm dosyaları da katıyoruz bu sebeple -r diyoruz
+
+cp /etc/issue . dersek . olarak şu anda bulunduğumuz dizine kopyalamış oluruz. . şu anda bulunduğumuz dizin demektir.
+
+Yine bulunduğumuz dizinin bir üst dizinine kopyalamak istersek cp ornek1 ../ komutunu kullanırız.
+
+57) mv move komutu
+Dosyayı başka bir yere taşımak ya da adını değiştirmek için de kullanılır.
+
+mv issue problemler dersek issue klasörünü problemler klasörüne taşımış oluruz.
+mv issue problemler/issue_yedek seklinde farklı bir isimle de kaydedebiliriz.
+mv ornek1 ornekA dersek ornek1 adlı dosyayı ornekA olarak taşımış oluruz.
+
+58) rm remove komutu
+rm issue1 sampleA test1.txt şeklinde dosyaları silebiliriz.
+
+Bir dizin altındaki txt uzantılı dosyaları silmek için rm /dizinA/*txt demek yeterli olacaktır.
+
+59) shred komutu dosyaları güvenli bir şekilde silmek için kullanılabilir. Bu komutla silmek istediğimiz hedef dosyaya rastgele bitler yazılarak kurtarılmasını
+önlemeye çalışıyoruz.
+-n eklenerek dosya üzerine kaç defa yazılabileceğini belirtebiliriz.
+-u kullanırsak hedef dosya işlem sonunda silinir.
+-v parametresi ile yapılan işlemi terminalde ayrıntılı olarak görebiliriz.
+şimdi deneme adlı dosyaya shred komutuyla rastgele veri yazarak kurtarılmasını engellemeye çalışalım. 10 kere yazma işlemi yapılsın
+shred -n 10 -v deneme kullanılabilir.
+
+shred -uv test dersek silinmeye başlar yeniden adlandırılır en sonunda silinir.
+
+Dizin oluşturma ve silme
+
+60) mkdir komutu makedirectoryden gelmektedir.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
