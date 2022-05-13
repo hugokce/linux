@@ -561,6 +561,12 @@ mv ornek1 ornekA dersek ornek1 adlı dosyayı ornekA olarak taşımış oluruz.
 
 58) rm remove komutu
 rm issue1 sampleA test1.txt şeklinde dosyaları silebiliriz.
+rm ile dizin silmek istersek de -r recursive parametresi ile kullanırız. 
+rm -ri dersek silmeden önce sorsun diyoruz
+rm -rf dersek de force kullanarak hemen sil diyoruz.
+rm -r klasor1
+rm -ri klasor1
+rm -rf klasor1
 
 Bir dizin altındaki txt uzantılı dosyaları silmek için rm /dizinA/*txt demek yeterli olacaktır.
 
@@ -577,9 +583,23 @@ shred -uv test dersek silinmeye başlar yeniden adlandırılır en sonunda silin
 Dizin oluşturma ve silme
 
 60) mkdir komutu makedirectoryden gelmektedir.
+mkdir klasor1 dersek bulunduğumuz dizine bir adet klasor1 adlı klasör olusturur.
+mkdir klasor1 klasor2 klasor3 seklinde birden fazla klasor de olusturabiliriz.
+mkdir -p dersek alt dizinleri de olan bir klasor yapısı oluştururuz.
+mkdir -p linux/examples/png ile önce linux sonra examples sonra da png adlı klasörler oluşur.
+mkdir sonrası -m dersek izinleri de ekleyebiliriz.
+mkdir -m 700 klasor1 
+700 şu demek rwx------
 
+Dosya Sıkıştırma, Açma ve Arşivleme
 
+61) tar komutu ile arşiv dosyası oluşturabiliriz. 
+tar -cf arsiv1.tar klasor1 dizin2 dizin3 ornek5 dedigimizde arsiv1 adında bir tar dosyası olusuyor. 
+c create f de file demektir oluşturacağımız dosyanın adını veririz.
+Dosya oluşunca arşive alınan dosyalar silinmez.
 
+Arşiv dosyasını açmak için de xvf kullanırız
+tar -xvf arsiv1.tar deriz. x extract v verbose ayrıntılı çıktı almak için kullanırız.
 
 
 
