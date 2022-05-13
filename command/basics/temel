@@ -601,6 +601,48 @@ Dosya oluşunca arşive alınan dosyalar silinmez.
 Arşiv dosyasını açmak için de xvf kullanırız
 tar -xvf arsiv1.tar deriz. x extract v verbose ayrıntılı çıktı almak için kullanırız.
 
+62) gzip, bzip2, gunzip, bunzip2 komutları
+gzip ve bzip2 sıkıştırma işlemleri için kullanılır. gzip kullanıldıysa uzantısı gz, bzip2 kullanıldıysa bz2 uzantılı olacaktır.
+Bu sıkıştırılan dosyaları açarken de gunzip ve bunzip2 kullanılır.
+
+Sıkıştırma       Açma
+gzip         --> gunzip
+bzip2        --> bunzip2
+
+gzip ornek   dersek ornek.gz
+bzip2 ornek2 dersek ornek2.bz2 olarak sıkışır. Bu ornek ve ornek2 adlı dosyalar kaybolur. Tekrar açmak için şu komutları kullanırız.
+
+gunzip ornek.gz    dersek ornek dizini
+bunzip2 ornek2.bz2 dersek ornek2 dizini tekrar karşımıza gelir.
+
+şu tip kullanım da mümkün. gunzip ornek.gz ; bunzip2 ornek2.bz2 aynı anda iki komutu da kullanmış olduk.
+
+Şimdi sıkıştırma ve arşivlemeyi ve bunları açma kodlarına bakalım
+
+Sıkıştırılmış arşiv dosyası oluştururken 
+gzip kullanılmışsa uzantısı tgz ya da tar.gz olur
+bzip2 kullanılmışsa uzantısı tar.bz2 olur
+
+Eğer gzip kullanılarak arşiv dosyası oluşturuluyorsa czvf
+    bzip2 kullanılarak arşiv dosyası oluşturuluyorsa cjvf parametreleri kullanılır. 
+
+Eğer gzip kullanılarak arşiv dosyası açılmaya çalışılıyorsa  xzvf
+    bzip2 kullanılarak arşiv dosyası açılmaya çalışılıyorsa  xjvf parametreleri kullanılır. 
+
+tar czvf /home/arsiv.tar.gz ornek1 ornek2 boylece 2 dosya sıkıştırılıp arsiv.tar.gz adıyla saklanır.
+tar xzvf arsiv.tar.gz komutu ile arşiv dosyası açılır.
+
+tar cjvf arsiv.tar.bz2 ornek1 ornek2 komutu ile bu sefer de bzip2 ile sıkıştırıp arşivleme yapıyoruz.
+tar xjvf arsiv.tar.bz2 komutu ile de arşivlenmiş dosyası açmak için kullanıyoruz.
+
+
+
+
+
+
+
+
+
 
 
 
