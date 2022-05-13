@@ -635,14 +635,24 @@ tar xzvf arsiv.tar.gz komutu ile arşiv dosyası açılır.
 tar cjvf arsiv.tar.bz2 ornek1 ornek2 komutu ile bu sefer de bzip2 ile sıkıştırıp arşivleme yapıyoruz.
 tar xjvf arsiv.tar.bz2 komutu ile de arşivlenmiş dosyası açmak için kullanıyoruz.
 
+63) zcat, zgrep, bzcat ve bzgrep komutları
+ornek.gz dosyasında okuma yapmak istersek zcat ornek.gz deriz
+sıkıştırılmış dosyanın içeriğinde belirli kriterlere göre arama yapmak istersek zgrep Ka* ornek.gz deriz.
 
+bzcat ornek.gz bzip2 ile sıkıştırılmış dosyalarda kullanılır
+bzgrep De* ornek.bz2 bzip2 ile sıkıştırılmış dosyalarda arama yapmak istediğimizde kullanırız.
 
+64) unrar ve unzip 
 
+rar uzantılı dosyaları açmak için unrar kullanırız. zip uzantılı dosyayı da unzip ile açabiliriz.
+unrar x ornek.rar komutu ile rar dosya açılır.
 
+zip ornek.zip ornek dersek ornek dosyasını zip sıkıştırmış oluruz.
+unzip ornek.zip dersek de bu dosyayı açmış oluruz.
 
+Dosya ve Dizinlere Erişim Yetkisi
 
-
-
+64) 
 
 
 
