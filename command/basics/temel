@@ -730,7 +730,10 @@ chattr -i dosya dersek de bu özelliği kaldırırız.
 
 Kullanıcı İşlemleri
 
-68)
+68) shadow-passwd komutu
+Sistemdeki kullanıcıların bilgileri ve parolalar /etc dizini altında saklanır. Kullanıcılarla ilgili bilgiler /etc/passwd dosyasında 
+kullanıcı parolalarının şifrelenmiş hali de /etc/shadow dosyasında yer alır.
+
 
 
 
