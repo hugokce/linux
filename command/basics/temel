@@ -674,6 +674,40 @@ a herkes all demektir.
 
 r read okuma, w write yazma, x exec çalıştırma, s suid biti ve t sticky biti demektir. 
 
+chmod +r dosya               herkese okuma izni vermek
+chmod u+rwx dosya            dosya sahibine tüm yetkileri vermek
+chmod o-wx dosya             diğer kullanıcıların tüm yetkilerini kaldırmak
+chmod u+rwx,g+r,o+r dosya    dosya sahibine tüm yetkileri vermek, gruba okuma yetkisi vermek ve diğer kullanıcılarıa da okuma yetkisi vermek
+chmod go-rwx dosya           grup ve diğerlerinden rwx yetkisin kaldırılması
+chmod +x dosya               herkese çalıştırma yetkisi vermek
+chmod go+w dosya             grup ve diğer kullanıcılara yazma yetkisi vermek
+chmod g-r,o-w dosya          gruptakilerin okuma iznini kaldırmak ve diğer kullanıcıların yazma yetkisini kaldırmak
+
+Sayısal olarak tanımlarsak şu şekilde olur
+r read 4 
+w write 2
+x execute 1
+rwx 4+2+1 => 7
+Bir kullanıcı 7 7 7 yetkisine sahip olursa bir dosya dizinde hem okuma hem yazma hem de çalıştırma yetkisine sahiptir.
+İlk 7 dosya sahibi yetkisi
+İkinci 7 dosya sahibi ile aynı gruptakilerin yetkileri
+Üçüncü 7 diğer kullanıcıların yetkileri
+Root kullanıcı 7 7 7 => 777 yetkisine sahip ve tüm dizinlerde tüm yetkilere sahiptir.
+
+chmod 700 test dersek dosyanın sahibi tüm yetkilere sahip olur ama gruptakiler ve diğer kullanıcıların
+yetkileri kaldırılmış olur.
+
+chmod -R 755 dosya ile alt dizinleri de kapsasın istersek kullanırız.
+
+65) suid biti
+
+
+
+
+
+
+
+
 
 
 
