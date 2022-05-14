@@ -697,9 +697,65 @@ Root kullanıcı 7 7 7 => 777 yetkisine sahip ve tüm dizinlerde tüm yetkilere 
 chmod 700 test dersek dosyanın sahibi tüm yetkilere sahip olur ama gruptakiler ve diğer kullanıcıların
 yetkileri kaldırılmış olur.
 
-chmod -R 755 dosya ile alt dizinleri de kapsasın istersek kullanırız.
+chmod -R 755 dizin ile alt dizinleri de kapsasın istersek kullanırız.
 
 65) suid biti
+Kullanıcıların bazen root yetkisi ile hareket etmesi gerekebilir. 
+Herhangi bir dosya suid biti olarak ayarlandıysa diğer kullanıcılar da bu dosyayı kullanmak isteyince
+sahibi gibi davranır. 
+suid bitini ayarlamak için chmod u+s dosya
+chmod u-s dosya ile de suid biti yetkisi kaldırılır.(4)
+
+suid bite sahip dosyaları bulmak için find / -perm -4000 komutunu kullanabiliriz.
+
+Herkes tarafından yazılabilir dosya ve dizinleri bulmak için find / -perm -2 ! -type l -ls kullanırız.
+
+66) umask komutu ile yeni oluşturulan dosya ve dizinler için atanacak varsayılan erişim yetkileri belirlenir.
+umask dersek 0022 verir.
+dizinler oluşturulunca 755   rwxr-xr-x
+dosyalar oluşturulunca 644   rw-r--r-- yetkisi ile oluşturulur
+
+umask değerini değiştirmek için umask değer komutu çalıştırılır.
+
+0022 => 000 000 010 010 ikili sistemdeki tanımı.
+
+67) chattr komutu ile yanlışlıkla bir dosya sildiğimizde ya da  konfigürasyon dosyasını sistem
+restart sonrası kaybolursa bu gibi durumları engellemede kullanılır. 
+chattr +i dosya dersek değişiklik yapılması istendiğinde engeller. 
+Bu komutla koruma altındaki dosyaları görmek istersek lsattr kullanırız.
+
+lsattr -R dizin dersek dizin altındaki dosyaları kontrol eder.
+
+chattr -i dosya dersek de bu özelliği kaldırırız. 
+
+Kullanıcı İşlemleri
+
+68)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -735,3 +791,4 @@ Kaynak
 (1)  Demirez, Kemal Linux Komut Satırı Abaküs Yayınları
 (2)  https://linux.die.net/man/8/dmidecode
 (3)  https://www.yusufsezer.com.tr/linux-arama-komutlari/
+(4)  https://fthcyber.com/2020/09/07/linux-sistemlerde-suid-sgid-ve-sticky-bit-kavrami/
