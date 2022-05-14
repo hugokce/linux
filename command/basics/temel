@@ -652,7 +652,27 @@ unzip ornek.zip dersek de bu dosyayı açmış oluruz.
 
 Dosya ve Dizinlere Erişim Yetkisi
 
-64) 
+Kullanıcılar read r , write w ve execute x yetkilerine sahip olabilir.
+
+drwxrwxrwx d dizin (directory) olduğunu gösterir
+-rwxrwxrwx - dosya olduğunu gösterir.
+İlk üç rwx dosya dizin sahibinin yetkisini
+İkinci üç rwx dosya dizin sahibi ile aynı grupta olan kullanıcıların yetkilerini
+Üçüncü üç rwx diğer kullanıcıların yetkilerini gösterir.
+
+64) chmod erişim yetkilerinin değiştirilmesi için kullanılır.
+
+chmod ugoa +=- rwxst dosya/dizin şeklinde kullanılır
+u dosya ya da dizin sahibi user
+g dosya ya da dizin sahibiyle aynı grupta yer alan kullanıcılar
+o diğer kullanıcılar others
+a herkes all demektir.
+
++ yetki ekleme
+- yetki azaltma
+= yetki eşitleme
+
+r read okuma, w write yazma, x exec çalıştırma, s suid biti ve t sticky biti demektir. 
 
 
 
