@@ -742,6 +742,8 @@ kullanıcı parolalarının şifrelenmiş hali de /etc/shadow dosyasında yer al
 
 
 
+apt-get install python3 ya da apt-get remove komutları ile kurulum ve yazılım kaldırma işlemleri yapılabilir. (5)
+
 
 
 
