@@ -591,6 +591,8 @@ mkdir sonrası -m dersek izinleri de ekleyebiliriz.
 mkdir -m 700 klasor1 
 700 şu demek rwx------
 
+mkdir "ekli dosyalar" gibi boşluk içeren dosya adı verilmek istenirse kullanılır.(5)
+
 Dosya Sıkıştırma, Açma ve Arşivleme
 
 61) tar komutu ile arşiv dosyası oluşturabiliriz. 
@@ -795,3 +797,4 @@ Kaynak
 (2)  https://linux.die.net/man/8/dmidecode
 (3)  https://www.yusufsezer.com.tr/linux-arama-komutlari/
 (4)  https://fthcyber.com/2020/09/07/linux-sistemlerde-suid-sgid-ve-sticky-bit-kavrami/
+(5)  https://www.udemy.com/course/linux-ogreniyorum/learn/lecture/10787266#overview
