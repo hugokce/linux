@@ -245,6 +245,8 @@ history için 40 nolu satırdaki komut hostname olsun
 
 history 5 dersek son 5 komutu ekrana yazdırırız.
 
+history | grep first.py komutu ile history komutlarında arama yapıyoruz.(5)
+
 echo $HISTSIZE komutu ile history olarak kaç satır komutun saklandığını görebiliriz
 örneğin 1000 dönerse son 1000 satır kodu saklıyor demektir.
 Bu 1000 değerini değiştirmek istersek .bashrc altındaki HISTSIZE parametresini değiştirmemiz gerekiyor.
