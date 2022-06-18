@@ -568,6 +568,8 @@ rm -r klasor1
 rm -ri klasor1
 rm -rf klasor1
 
+rmdir "alinan notlar" komutu ile "aralarında boşluk" olan klasörü silmek istersek kullanırız
+
 Bir dizin altındaki txt uzantılı dosyaları silmek için rm /dizinA/*txt demek yeterli olacaktır.
 
 59) shred komutu dosyaları güvenli bir şekilde silmek için kullanılabilir. Bu komutla silmek istediğimiz hedef dosyaya rastgele bitler yazılarak kurtarılmasını
@@ -591,7 +593,7 @@ mkdir sonrası -m dersek izinleri de ekleyebiliriz.
 mkdir -m 700 klasor1 
 700 şu demek rwx------
 
-mkdir "ekli dosyalar" gibi boşluk içeren dosya adı verilmek istenirse kullanılır.(5)
+mkdir "ekli dosyalar" gibi boşluk içeren klasör adı verilmek istenirse kullanılır.(5)
 
 Dosya Sıkıştırma, Açma ve Arşivleme
 
