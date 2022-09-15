@@ -738,8 +738,9 @@ Kullanıcı İşlemleri
 
 68) shadow-passwd komutu
 Sistemdeki kullanıcıların bilgileri ve parolalar /etc dizini altında saklanır. Kullanıcılarla ilgili bilgiler /etc/passwd dosyasında 
-kullanıcı parolalarının şifrelenmiş hali de /etc/shadow dosyasında yer alır.
-
+kullanıcı parolalarının şifrelenmiş hali de /etc/shadow dosyasında yer alır. Yeni bir kullanıcı eklendiği zaman bu passwd ve shadow 
+dosyalarına yazılır.
+Parolalar shadow dosyasına yazılmadan önce şifreleme algoritmaları kullanılır.
 
 
 apt-get install python3 ya da apt-get remove komutları ile kurulum ve yazılım kaldırma işlemleri yapılabilir. (5)
