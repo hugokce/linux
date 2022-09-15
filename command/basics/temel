@@ -740,7 +740,104 @@ Kullanıcı İşlemleri
 Sistemdeki kullanıcıların bilgileri ve parolalar /etc dizini altında saklanır. Kullanıcılarla ilgili bilgiler /etc/passwd dosyasında 
 kullanıcı parolalarının şifrelenmiş hali de /etc/shadow dosyasında yer alır. Yeni bir kullanıcı eklendiği zaman bu passwd ve shadow 
 dosyalarına yazılır.
-Parolalar shadow dosyasına yazılmadan önce şifreleme algoritmaları kullanılır.
+Parolalar shadow dosyasına yazılmadan önce şifreleme algoritmaları kullanılır. Bu şifreleme işleminde crypt yöntemi kullanılır.
+Önce parola kullanıcıdan alınır
+Salt olarak kullanılmak üzere 8karakterli bir katar oluştur.
+Alınan parola ile salt değeri ile birlikte gelen crypt fonksiyonundan geçir ve şifreli katarı oluştur
+Linux sistemlerde parolalar hash+salt formatında saklanır. Hash kriptografik özet demektir. Kullanıcının parola olarak
+belirlediği değer çeşitli algoritmalara göre kriptolanarak şifreli yeni bir ifade oluşturulur. Bu ifadeye hash denir. 
+Salt ifade ise random olarak üretilen değerdir. Bu da hashe eklenir. Bu oluşan ifade kriptolanır ve shadow dosyasına yazılır.
+man 3 crypt dediğimizde detaylara ulaşabiliriz
+$id$salt$encrypted  şeklinde saklanır
+Burada id değeri 1 , 2 5 ve 6 değerini alır
+1 ise MD5
+2a ise Blowfish
+5 SHA-256
+6 SHA-512 algoritması ile şifrelenir.
+
+MD5 ile şifrelenen parolalarda salt değerden sonra 22 karakter
+SHA-256 ile şifrelenen parolalarda 43 karakter, SHA-512 ile şifrelemede 86 karakterdir.
+$6$hovdS3di$eruwpoeırwpoır945pw495weıuqpıepoqı3rpow  gibi
+6 SHA512 olduğunu hovdS3di salt kısmı ifade eder ki 8 karakterdir. Geri kalan kısım kullanıcının parolasını ifade eder bu da 86 karakterdir.
+
+cat /etc/shadow | grep root ile şifre incelenebilir.
+
+69) Sisteme kullanıcı ekleme
+adduser ya da useradd kullanılır. 
+adduser kullanıcıadı deriz. Böylece /home/kullanıcıadı  dizini otomatik oluşur.
+Aynı zamanda kendi adındaki gruba da dahil edilir.
+groups kullanıcıadı dersek kullanıcıadı:kullanıcıadı olarak gözlemleriz
+
+userid uid ve groupid gid değerleri şu şekildedir 
+root user için uid 0 gid 0
+system userları uid 1-499 gid 1-499
+normal userlar  uid 500<  gid 500<  olarak şekillenir
+id dersek kendi kullanıcımızın idlerini buluruz
+id kullanıcıadı dersek o verdiğimiz kullanıcının id değerleri gösterilir
+id kullanıcıadı  uid 1000   gid 1001 gruplar 1001
+
+useradd -m kullanıcıadı ile de kullanıcı ekleyebiliriz.  -m ile kendi dizini oluşsun diyoruz
+passwd kullanıcıadı ile de şifreyi belirleyebiliriz.
+
+70) Kullanıcı silme
+deluser --remove-home kullanıcıadı ile /home/kullanıcıadı dizini de birlikte silinir. adduser ile oluşturulan kullanıcı böyle silinir
+
+useradd -m ile eklenen kullanıcılar ise dizinle beraber silinmesi isteniyorsa userdel -r kullanıcıadı şeklinde silinir. 
+
+71) Manuel olarak kullanıcı ekleme
+Manuel ekleme için passwd, shadow ve group dosyalarına ekleme yapmamız gerekli.
+vipw ve vigr komutları ile passwd ve group dosyalarında değişiklik yapabiliriz. Bu komutlar vim editörünü kullanıp passwd ve group dosyalarını açarlar. 
+
+passwd dosyasına deneme:x:2000:2000:,,,:/home/deneme:/bin/false kullanıcı adı deneme id ve gid 2000 olan kullanıcıyı eklemiş oluruz.
+kullanıcı oluşturulurduktan sonra /bin/false olan kısmı /bin/bash olarak kabuğunu değiştiriyoruz. 
+Bir de shadow dosyasında değişiklik gerekiyor. Bir satır kopyalanıp alt satıra yapıştırılır. kullanıcı adı deneme olarak değiştirilir.
+Sonra passwd deneme komutu ile parolasını belirleriz. 
+Sonra /etc/group dosyasına deneme:x:2000: satırını ekleyip kaydederiz. 
+/home dizini altına deneme klasörünü oluşturuyoruz ve izin -sahiplik düzenlemelerini yapıyoruz.
+cd /home
+mkdir deneme
+chown deneme.deneme deneme
+chmod o-rwx deneme
+Bu işlemler bitince /bin/false /bin/bash olarak değiştirilir ve kullanıcı artık tamamiyle oluşmuş olur.
+
+72) Kullanıcının kişisel bilgilerini değiştirme
+Bu işlemi yapmak için chfn komutu kullanılır. chfn kullanıcıadı girilir. Değerler girilir ve enter ile devam edilir.
+
+73) Kullanıcıya ait bilgileri listelemek
+chage -l kullanıcıadı komutu ile bilgiler listelenir.
+Bu komut parola süresini değiştirmek için kullanılabilir. chage -E 2015/11/16 kullanıcıadı komutu ile verilen tarihte parola 
+geçerlilik süresini belirleyebiliriz.
+
+74) Kullanıcıyı Aktif ve Pasif duruma getirme
+usermod [-L|-U] kullanıcıadı   L lock U unlock
+usermod -L deneme  ile kilitlenir
+usermod -U deneme ile kilit açılır
+
+Ayrıca shadow dosyasında şifre alanında bulunan kodlanmış şifrenin önüne ! işareti eklenince de pasif duruma kullanıcı getirilebilir.
+/etc/shadow dosyasında kullanıcı şifresini boş bırakmak istersek passwd -d user komutu kullanılır. Bu durumda kullanıcı uzaktan şifre istenmeden
+sisteme giriş yapabilir. Bu zaafiyetten ötürü kilitlemek daha doğru bir yöntemdir.
+
+75) Kullanıcı parolasını değiştirme
+passwd kullanıcıadı ile şifre değiştirilir. 
+
+76) Başka kullanıcı kimliğine bürünme
+Diğer kullanıcı gibi davranması için o kullanıcının şifresinin bilinmesi gerekir. 
+w, who whoami komutlarına bakalım. Bu komutlarla sisteme ne zaman giriş yapıldığı şu anda hangi kullanıcı ile bağlı olduğumuzu görebiliriz
+who -b ile sistem ne zaman açıldı görebiliriz.
+who -r ile açılış seviyesi runlevel görülür.
+whoami ile o anda hangi kullanıcı ile çalıştığımızı görebiliriz. 
+su digerkullanıcı  komutu ile diğer kullanıcıya geçeriz
+su - kullanıcıadı komutu ile diğer kullanıcı olur ve o kullanıcının kabuğunda çalışılır.
+exit ile o kullanıcıdan çıkılıp kendi kullanıcımıza geçilir.
+su - root dersek root şifresini bilmemiz gerekir. 
+su ya da su - ile root olabiliriz ancak bu işlem sırasında root şifresini de soracaktır.
+su ile kullanıcı değiştiririz ancak su - ile hem diğer kullanıcı oluruz hem de onun dizininde çalışmaya başlarız
+
+Süreçler 
+
+77) 
+
+
 
 
 apt-get install python3 ya da apt-get remove komutları ile kurulum ve yazılım kaldırma işlemleri yapılabilir. (5)
