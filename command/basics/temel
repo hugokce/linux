@@ -833,9 +833,52 @@ su - root dersek root şifresini bilmemiz gerekir.
 su ya da su - ile root olabiliriz ancak bu işlem sırasında root şifresini de soracaktır.
 su ile kullanıcı değiştiririz ancak su - ile hem diğer kullanıcı oluruz hem de onun dizininde çalışmaya başlarız
 
-Süreçler 
+Bölüm 11 Süreçler 
 
-77) 
+77) process ps
+prosess çalışan dosyalara verilen addır. Çalışan programları görüntülemek için ps kullanırız. 
+ps --help a ile tüm parametrelerini görebiliriz.
+ps aux komutu ile process hakkında bilgi edinebiliriz
+ps aktif kullanıcının süreçleri hakkında bilgi verir.
+ps -e ile sistemdeki tüm süreçler hakkında bilgi alabiliriz.
+ps -f ile ayrıntılı liste elde edinilir ps -e de aynı çıktı üretir.
+ps -u kullanıcıadı bu kullanıcı ile ilgili süreçleri verir.
+Sadece istediğimiz süreçle ilgili bilgi almak istersek
+ps aux | grep 'ssh' ssh servisi ile ilgili bilgi ediniriz.
+En son yazdığımız kodu göstermesin istersek 
+ps aux | grep '[s]sh' şeklinde çalıştırırız.
+
+78) pstree komutu
+
+Bu komutla sistemdeki süreçler hiyerarşik bir şekilde görüntülenir.
+pstree ya da ps -el --forest komutları kullanılabilir.
+
+pstree -p dersek PID processID numaraları ile görüntüleyebiliriz.
+
+pstree kullanıcıadı ile o kullanıcının süreçlerini görebiliriz.
+Alt süreçlerini de görmek istersek PID değerini verebiliriz
+pstree PID yani pstree 950
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
