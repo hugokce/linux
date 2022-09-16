@@ -859,14 +859,22 @@ pstree kullanıcıadı ile o kullanıcının süreçlerini görebiliriz.
 Alt süreçlerini de görmek istersek PID değerini verebiliriz
 pstree PID yani pstree 950
 
+79) top komutu
+top komutu süreçlerdeki değişimleri izler. 
+top -d 10 dersek sonuçlar 10 saniyede bir güncellenir.
+top yazdıktan sonra işimiz bitince ekrandan çıkmak için q tuşuna basılabilir
+top komutu ile memory değerleri,  ne kadar süredir process çalışıyor, CPU bilgisi 
+hangi kullanıcıya ait processler gibi bilgileri elde edebiliriz.
 
+80) pgrep komutu
+Hafızada çalışan processlerin belirli kriterlere göre listelenmesi için pgrep kullanılır. 
+pgrep apache2 dersek apache ile ilgili süreçlerin IDlerini listeleriz. Servis çalışmazsa bu bilgiler elde edilemez.
 
+pgrep -l apache2 dersek sürecin isimlerini de elde ederiz.
 
+pgrep -lu kullanıcıadı şeklinde kullandığımız zaman o kullanıcıya ait süreçleri görebiliriz.
 
-
-
-
-
+81) kill killall komutları
 
 
 
