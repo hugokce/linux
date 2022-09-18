@@ -915,6 +915,36 @@ tail -f
 Bölüm 12 Disk İşlemleri
 84) fdisk komutu 
 
+Diski bölümlemek için fdisk aracı kullanılır. Bu aracı kullanırken dikkatli olalım. Yanlış kullanımda veri kaybı olabilir. Disk bölümlerini görmek için
+fdisk -l ya da  fdisk -l /dev/sda komutları girilir.
+
+Çıktı olarak alttaki gibi bir görüntü elde ederiz
+Disk /dev/sdc: 4294 MB, 4294967296 bytes, 8388608 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes  (7)
+
+Device    Boot Start End     Blocks  Id System
+/dev/sdc1      2048  4056    1004+   83 Linux
+/dev/sdc2      4096  8388607 4192256 83 Linux
+
+fdisk /dev/sda dersek komut bekleyen bir ekranla karşılaşırız.
+yardım komutlarını listelemek için m kullanırız. 
+p disk bölüm tablosu
+n yeni disk bölümü oluşturmak için kullanırız
+a boot bölümünün olduğu sistem disk bölümü oluşturmak için 
+d bölüm silmek için kullanılır.
+l disk bölümlerini listelemek için 
+q çıkış yapmak için
+w değişiklikleri yapıp çıkmak için kullanılır.
+
+85) cfdisk komutu 
+fdisk aracının görsel bir arayüze sahip olduğu versiyonudur. Terminalde cfdisk yazıp bakılabilir.
+
+86) badblocks 
+
+
+
 
 
 
@@ -1015,3 +1045,4 @@ Kaynak
 (4)  https://fthcyber.com/2020/09/07/linux-sistemlerde-suid-sgid-ve-sticky-bit-kavrami/
 (5)  https://www.udemy.com/course/linux-ogreniyorum/learn/lecture/10787266#overview
 (6)  http://web.deu.edu.tr/doc/lis/lis-7.html#:~:text=Sed%20bir%20dosyadan%20veya%20standart,bir%20kabuk%20program%C4%B1%20i%C3%A7inden%20kullan%C4%B1labilir.
+(7)  https://www.thegeekdiary.com/how-to-use-fdisk-to-partitiona-disk-in-linux/
