@@ -954,6 +954,13 @@ Disk üzerindeki hatalı alanlar/bloklar fsck aracılığıyla düzeltilmeye ça
 sisteme bağlanıp çalışmaya başlar. 
 fsck -p /dev/sdb ile usb bellek düzeltilmeye çalışılır.
 
+mkfs kısmında yer alan ek bilgileri yazalım
+fsck diskbolumu yerine fsck -n diskbolumu şeklinde kullanırsak dosya sistemini kontrol eder ancak onarmaz.
+/dev/sdb usb diskimizin dosya sistemini denetlemek istersek öncelikle diskimizi sistemden unmount etmemiz lazım. Ya da sistemi 1. kullanıcı seviyesinde
+başlatıp bu işlemleri yapabiliriz.
+
+fsck komutunu manuel kullanmanın en güvenli yolu diski unmount etmektir öncelikle. unmount kısmından devam edelim
+
 88) parted komutu
 Disk bölümlemede kullanabileceğimiz bir araçtır. Disk bölümleri hakkında bilgi almak için
 parted -l komutu kullanılır. 
@@ -968,15 +975,83 @@ rescue START END ile start end date arasında kaybedilmiş partition kurtarır.
 
 88) mkfs - mount - unmount 
 
+parted --> print dedikten sonra 1,2,5 geldi. 1 nolu bölüm için yeniden dosya sistemi oluşturmak isteyelim. Bunun için 
+mkfs 1 ext4 deriz. Ancak dosya sistemi oluşturmak demek o disk bölümünü formatlamak demektir ve bilgi kaybına yol açabilir. O yüzden bu komutu
+kullanırken dikkat etmek gerekiyor.
 
+Herhangi bir disk bölümünü herhangi bir dosya sistemine göre yeniden formatlamak istersek şu komutu kullanabiliriz.
+mkfs.vfat /dev/sdb  ya da mkfs disk_bolumu gibi.
 
+parted aracılığıyla print ile listelenen disk bölümleriyle ilgili şu işlemler de yapılabilir.
+mkpark yeni bölüm oluşturulabilir
+rm bölüm silinir
+quit çıkış yapmak için kullanılır. 
 
+umount /dev/sdb 
+fsck /dev/sdb ile test edip onarmaya çalışabiliriz.
+işimiz bittikten sonra sistem tekrar mount etmeliyiz. Yoksa disk görünür ancak işlem yapmamıza izin vermez. 
+Mount etmek için mkdir /media/usb klasörünü oluştururuz. Buraya diskimizi mount edeceğiz 
+mount -t vfat /dev/sdb /media/usb dediğimizde mount işlemini yapabiliriz. -t ile diskin dosya sistemi türü belirtilir.
 
+fsck -t ext3 /dev/sda ya da fsck -t vfat /dev/sdb kullanıldığını görebiliriz.
+Komutu kullanırken test edilecek diskin dosya sistemi türünü belirtmeye yarayan -t ifadesini ve dosya sistemini (ext3,ext4,vfat vb) belirtmeye gerek
+yoktur. fsck bunu kendi yapar.
 
+mount -l ile sistemde hangi disk bölümlerinin hangi dosya sistemi ile nereye mount edildiklerini görebiliriz. 
+mount -l | grep KML ile usb diskimizin nereye mount edildiğini görebiliriz diskimizin adı KML kabul ettik.
+ayrıca mount -l | grep sdb ile de aynı çıktıyı alabiliriz
 
+89) dd komutu
 
+Bir disk bölümünü kopyalamak, imajını almak ve farklı formatlarda yedekleme yapmak için dd komutunu kullanılır.
 
-Bölüm 13 Run Level
+dd if=/dev/sda of=/dev/sdb  en temel kullanım şeklidir. sda diskinin sdb diskine kopyalanacağını ifade eder.
+Bir disk bölümünün üzerine rastgele bitler yazarak içeriğinin imha edilmesi için 
+df if=/dev/urandom of =/dev/sdb komutu kullanılır.  burada dev/sdb usb belleğin içeriğinin silinmesi amaçlanmıştır.
+Rastgele veriler yazıldığı için içindeki veriler güvenli bir şekilde imha edilmiş oldu.
+
+Bir CD var ve iso formatlı kopyalamak istiyoruz. bunu şu komutla yapabiliriz
+dd if=/dev/cdrom of=/mycd.iso 
+Porteus linux cdsini sisteme taktığımızı varsayıp iso halini kopyalayalım
+dd if=/dev/cdrom of=/porteus.iso
+
+cd /media/cdrom sonra ls deyince karşımıza porteus gelir. 
+sonra da bu komutu yazıyoruz dd if=/dev/cdrom of=/porteus.iso
+ls -l /porteus.iso diyoruz karşımıza geliyor.
+file /porteus.iso 
+
+Disk imajı almak istediğimizde dd if=/dev/sda of=/dev/sdb/dsa.img kullandığımızda sda disk bölümümüzün imajını alarak harici diskimiz olan
+sdb altına sda.img adıyla kaydetmiş oluruz. 
+Disk bölümünün imajını gzip ile sıkıştırarak almak için dd if=/dev/sda | gzip > /dev/sdb/sda.img komutu kullanılabilir.
+
+KML diskimizin imajını alıp /home dizin altında kml.img adıyla kaydetmek istersek,
+usb, cdrom genelde /media dizini altına mount edilmiş haldedir. 
+Diskleri ifade eden bölümler de /dev dizini altında bir dosya görüntüsü halinde bulunur. Yani bizim usb diskimizi ifade eden /dev/sdb dir.
+
+/media/root/ altında dd if =/dev/sdb of=/home/kml.img dedik
+Böylece imaj dosyamız home dizini altına konuldu. 
+İmajı geri yüklemek için dd if=/home/kml.img of=/dev/sdb dedik
+
+file kml.img
+dd if=/home/kml.img of=/dev/sdb
+
+90) cpio komutu
+
+Bir dizini basit bir şekilde yedeklemek ve yedeği geri yüklemek için cpio komutunu kullanılır.
+ls | cpio -ov > backup.cpio uzantısı cpio olan yedekleme dosyası oluşturulur
+cpio -idv < backup.cpio  komutu ile oluşturulmuş yedek geri yüklenir.
+cpio --list < backup.cpio ile  yedekleme dosyasının içeriği görüntülenir. 
+
+Örneğin /etc dizinini yedeklemek istersek /etc dizini içindeyken
+ls | cpio -ov > /tmp/backup.cpio komutuyla /tmp klasörü altında backup.cpio adıyla /etc dizini yedeklenmiş olur.
+
+Bu yedek dosyanın içeriğini listelemek için
+cpio --list < backup.cpio kullanırız.
+
+Yedeği geri yüklemek istersek de 
+cpio -idv < /tmp/backup.cpio kullanırız.
+
+Bölüm 13 Run Levels
 
 
 
