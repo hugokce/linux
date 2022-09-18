@@ -876,7 +876,68 @@ pgrep -lu kullanıcıadı şeklinde kullandığımız zaman o kullanıcıya ait 
 
 81) kill killall komutları
 
- 
+Processleri sonlandırmak için kill komutlarını kullanırız. 
+
+kill PID
+kill -9 PID
+killall surecadi  servisle ilgili tüm süreçleri sonlandırırız.
+killall -9 surecadi direnen servisleri durdurmak için kullanırız
+killall -i surecadi süreçleri interaktif olarak sonlandırmak için kullanırız.
+
+killall apache2 komutu ile tüm apache servislerini durdururuz.
+pgrep -l apache2 dediğimizde hiçbir servisin çalışmadığını gözlemleriz
+
+killall -i apache2 dediğimiz interaktif olarak durdururuz. Yani tek tek kill edip etmek istemediğimizi sorar.
+kill apache2(2681) ? (y/N)  karşısında y dediğimizde kill eder
+kill apache2(2685) ? (y/N)  karşısında y dediğimizde kill eder
+
+82) xkill komutu
+
+Bir X oturumunda cevap vermeyen bir uygulamayı öldürmek için terminalden xkill komutu kullanılır. Böyle fare işaretçisi kurukafa şeklini alır.
+Kill etmek istediğimiz uygulama penceresine tıklayıp o uygulamayı sonlandırabiliriz.
+
+83) fg-bg komutu
+
+Bir süreç çalışırken bu sürecin çalıştırıldığı terminalden başka komut çalıştırılamaz. Ancak çalıştırılan süreç arka plana gönderilirse tekrar aynı
+terminal ile devam edebiliriz. Bir süreci arka plana atmanın 2 yolu vardır. Biri çalışan süreci CTRL+Z ile kesip terminalde bg yazıp arka plana atmak
+diğer yöntem ise çalıştırmadan önce komutun sonuna & işaretini koyup arka planda çalıştırmaktır.
+
+Arka plana gönderilen bir komutu tekrar ön plana almak için fg komutu kullanılır. Kesilmiş çalışmaların listesini almak için kullanacağımız
+komut ise jobs komutudur.
+tail -f dedik sonra CTRL+Z ile durdurduk
+bg dedik
+tail -f & 
+jobs dedik
+tail -f karşımıza çıktı
+fg dedik
+tail -f
+
+Bölüm 12 Disk İşlemleri
+84) fdisk komutu 
+
+
+
+
+
+
+
+
+
+
+Bölüm 13 Run Level
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
