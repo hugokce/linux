@@ -943,8 +943,30 @@ fdisk aracının görsel bir arayüze sahip olduğu versiyonudur. Terminalde cfd
 
 86) badblocks 
 
+Disk üzerindeki hatalı blokları-alanları denetlemek için badblocks komuut kullanılır. Hatalı bloklar bulunursa fsck ile tamir edilmeye çalışılır.
+usb bellek testi yapalım
+fdisk -l diyoruz /dev/sdb bizim usb belleğimizi gösterebilir.
+badblocks -v /dev/sdb diyoruz hata varsa karşımıza gelir.
 
+87) fsck komutu
 
+Disk üzerindeki hatalı alanlar/bloklar fsck aracılığıyla düzeltilmeye çalışılır. Sistem açılışın da bu araç çalışıp diski denetler. Sonra disk
+sisteme bağlanıp çalışmaya başlar. 
+fsck -p /dev/sdb ile usb bellek düzeltilmeye çalışılır.
+
+88) parted komutu
+Disk bölümlemede kullanabileceğimiz bir araçtır. Disk bölümleri hakkında bilgi almak için
+parted -l komutu kullanılır. 
+parted yazarsak bizden komut bekleyen ekran gelir.
+Yardım konularını görmek için help kullanırız.
+print dediğimiz zaman disk bölümleriyle ilgili listeyi görürüz.
+mklabel ile yeni disk label oluştururuz
+mkpart ile yeni partition oluştururuz.
+name ile partitiona isim veririz
+quit ile programdan çıkarız.
+rescue START END ile start end date arasında kaybedilmiş partition kurtarır. 
+
+88) mkfs - mount - unmount 
 
 
 
