@@ -1240,13 +1240,26 @@ dpkg --purge remove programadi ya da dpkg --purge programadi komutlarıyla progr
 
 dpkg -P programadi kısa komutu da kullanılabilir.
 
+dpgk -P opera komutuyla opera web tarayıcısını kaldırıyoruz.
 
+Redhat sistemlerde paket yöneticisi rpmdir. Örneğin Fedora kullanıyoruz ve web browser programına ait google-chrome-stable_current_i386.rpm
+paketini indirdik ve kurulum yapmak istiyoruz.
+rpm -ivh google-chrome-stable_current_i386.rpm komutunu kullanırız.
+i paketi kur
+v işlemleri ekranda göster
+h kurulum düzeyine göster demektir.
 
+rpm -ev paketadı ile de kurulu paketi sistemden kaldırırız.
 
+Redhat ve türevi Linux dağıtımlarının rpm komutlarını listeleyip bakalım
+rpm -i program_paketi.rpm     temel paket kurma komutudur
+rpm -U program_paketi.rpm     paket kullanarak sistem güncelleme 
+rpm -e programadi             paket kaldırmak için 
+rpm -qa                       sistemdeki paketleri listelemek için 
+rpm -qpl program_paketi.rpm   henüz sisteme kurulmamış bir programa ait paketin içindeki dosyaları listelemek için
+rpm -qi programadi            sistemde kurulu olan bir paket hakkında bilgi almak için
 
-
-
-
+99) apt-get 
 
 
 
