@@ -1097,13 +1097,37 @@ sysc-rc-conf --level 2345 apache2 on  dersek belirtilen seviyelerde apache servi
 
 93) service komutu
 
+Sistemdeki servisleri çalıştırmak, durdurmak, yeniden başlatmak için service komutu kullanılır.
+service apache2 start | stop | status | restart şeklinde kullanılır.
+
+Şimdi sistemdeki servislerin hepsinin durumuna bakalım.
+service --status-all 
+Apache2 karşısında - gördük bu çalışmadığını gösterir.
+service apache2 status diyelim ona özel olarak bakalım.
+inactive diyor o halde başlatalım servisi
+service apache2 start
+service apache2 status ile bakalım
+
+service --status-all 
+artık karşısında + işareti gördük ve çalıştığını bu komutla da öğrenmiş olduk.
+
+94) reboot - halt komutu
+
+Sistemi kapatırken init 0 komutunu kullanabiliriz. Bu komutla sistemimiz 0. çalışma seviyesine geçeceğinden ve bu seviyede
+hiçbir servis çalışmadığından sistem kapanışa geçecektir.
+Sistemimizi kapatmak için kullanabileceğimiz diğer komutlar
+shutdown -h now  dersek beklemeden direk kapanış moduna geçecektir
+shutdown -h now+10 dersek sistemi 10 dakika sonra kapat demiş oluruz
+halt dersek sistemin kapanışını başlatmış oluruz.
+
+Sistemi yeniden başlatmak istediğimizde
+reboot
+init 6 6.çalışma seviyesine yani reboot seviyesine geçecektir.
+
+Bölüm 14 Sembolik Link - Katı Link
 
 
-
-
-
-
-
+95) inode
 
 
 
