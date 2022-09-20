@@ -1053,8 +1053,49 @@ cpio -idv < /tmp/backup.cpio kullanırız.
 
 Bölüm 13 Run Levels
 
- 
+Linux işletim sistemi başlatıldığında çekirdek belleğe yüklenip çalıştırılır. Donanımları tarayıp sürücü yazılımlarını yüklemeye başlar.
+Root dosya sistemi mount edilir ve init programı başlatılarak sistem çalışır hale getirilir. Bu işlem yapılırken sistemin çalışma seviyesi
+run level ayarlanır. Sistem açıldığı çalışma seviyesine göre belirlenmiş hangi hizmetleri verecekse o servisler başlatılır. İşte bu duruma ,
+yani hangi servislerle ilgili hizmet verecekse o servislerin başlatılarak açılması durumuna runlevel adı verilir. Linuxta 7 farklı çalışma 
+seviyesi vardır. 
+0: Hiçbir servisin çalışmadığı ve kapatma işlemlerinin başladığı seviye (halt) 
+1: Tek kullanıcılı çalışma seviyesi. Ağ servisleri çalışmaz. Sistem bakımı için kullanılabilir.
+2: Ağ desteği olmadan çok kullanıcılı çalışma seviyesi
+3: Ağ destekli çok amaçlı çalışma seviyesi
+4: Kullanılmaz. Fakat kullanıcı tarafından özel olarak tanımlanabilir.
+5: Grafiksel kullanıcı arayüzünün GUI çalıştığı seviyedir. Kişisel kullanım için olan linux dağıtımları bu çalışma seviyesinde başlatılır.
+6: Sistemi yeniden başlatma (reboot) seviyesidir.
 
+91) runlevel
+runlevel dediğimizde sistem hangi seviyede çalıştığını görebiliriz.
+
+Her çalışma seviyesi servislerin başlatılması ve sonlandırılması için kullanılan scriptlerin bulunduğu bir dizine sahiptir. Bu dizinler
+/etc dizini altında bulunurlar. rcX.d formatına sahiptirler. X çalışma seviyesini gösterir.
+
+Bu dizinlerde K ile başlayan dosyalar bu çalışma seviyesine geçildiğinde durdurulacak servisleri belirtmektedir. 
+S ile başlayan dosyalar ise bu çalışma seviyesine geçildiğinde çalıştırılacak servisleri belirtmektedir.
+/etc/rc5.d altında ls çekersek
+K01apache2 ....
+S02redis-server gibi dosyalarla karşılaşabiliriz.
+
+Burada gördüğümüz dosyalar /etc/init.d dizinindeki dosyalara sembolik bağlantılardır. 
+file K01apache2 dediğimizde
+K01apache2 symbolic link to ../init.d/apache2 sonucunu verir.
+
+/etc dizinde ls rc*.* komutunu kullanırsak tüm çalışma seviyelerindeki servislerin durumunu listelemiş oluruz
+
+92) sysv - rc- conf komutu
+Çalışma seviyesi konfigürasyon bilgilerini görmek istersek terminali önce tam ekran yapalım
+sysv-rc-conf komutu ile görebiliriz. Bu ekrandan servislerle ilgili düzenlemeler yapabiliriz. 
+Programdan çıkmak istersek Q tuşuna basmamız yeterlidir. 
+Konfigürasyonu düzenlemek yerine sadece listelemek istersek
+sysv-rc-conf --list komutu sadece listeyi gösterir.
+
+sysv-rc-conf --list apache2 dersek apache servisinin tüm çalışma seviyelerindeki durumunu görebiliriz.
+sysv-rc-conf --level 2345 apache2 off dersek belirtilen seviyelerde apache servisinin kapalı olmasını düzenleriz
+sysc-rc-conf --level 2345 apache2 on  dersek belirtilen seviyelerde apache servisinin açık olmasını düzenleriz.
+
+93) service komutu
 
 
 
