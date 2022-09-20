@@ -1184,6 +1184,72 @@ Ayrıca program dosyalarına ve dizinlere de sembolik bağlantı verebiliriz.
 
 Bölüm 15 Program Kurma - Kaldırma ve Sistem Güncelleme
 
+Linux'ta program kurmak için 3 yöntem kullanılabilir.
+Birincisi kaynak koddan derleyerek kurmak
+İkincisi kullandığımız dağıtıma uygun olan program kurulum paketlerinden paket yönetim sistemi yardımıyla kurulum
+Üçüncüsü repository denen dağıtımın kullandığı depolardan otomatik kurulum yapmaktır.
+
+Derlenmiş ve paket yönetim sistemiyle kuruluma hazır dosyalara paket denilir. Farklı dağıtımlar farklı paket dosyaları kullanır.
+Redhat Centos Fedora rpm kullanır Debian Ubuntu deb paketini kullanmaktadır.
+Redhat Centos Fedora rpm paket yöneticisini kullanırken Debian Ubuntu dpkg paket yöneticisini kullanmaktadır.
+
+Program repolarından otomatik olarak paketlerin indirilip kurulmasını sağlayan yöneticiler vardır
+Bunlar rpm paketlerini kullanan dağıtımlar için yum, deb paketlerini kullanan dağıtımlar için apt paket yöneticileridir.
+
+Önce Debian tabanlı dağıtımlara bakalım
+
+98) dpkg 
+
+Debian Ubuntu tabanını yani deb paketlerini kullanan Linux dağıtımlarının paket yönetim sistemidir. 
+Operayı indirmek için opera_12.12.1860_i386.deb indirilir. Şimdi kurmak için
+dpkg -i opera_12.12.1860_i386.deb kullanılır.
+
+Birden fazla kurulumu aynı anda yapmak istersek
+dpkg -i *.deb kullanırız.
+
+cat /etc/debian_version ile debian versiyonunu öğrenebiliriz. 
+
+Manuel kurulumda sisteme uygun paketleri bulup yüklemek gerekir. Program paketi (deb paketi) düzgün kurulup çalışabilmesi için
+başka paketlere ihtiyaç duyabilir. Bu duruma bağımlılık(depends) denir. Program çalışmazsa bu bağımlı paketlerin de kurulması lazım.
+
+dpkg --status paketadi komutuyla o paketle ilgili bilgi alabiliriz
+dpkg --status opera ya da dpkg -s opera 
+
+dpkg --info program.deb komutuyla henüz kurulum yapmadığımız bir deb paketiyle ilgili bilgi almak için kullanırız.
+dpkg --info opera_12.12.1860_i386.deb
+
+dpkg -l komutuyla sistemde var olan paketleri listelemek için kullanırız.
+
+dpkg -c program.deb komutuyla henüz kurmadığımız deb program paketinin içindeki dosyaları görmek ve bu dosyaların hangi dizin altında
+yer aldığını öğrende kullanırız.
+dpkg -c opera_12.12.1860_i386.deb
+
+dpkg --get-selections komutunu sistemde kurulu ya da kaldırılmış paketleri görmek için kullanırız.
+
+Sadece bir programa ait paketle ilgili bilgi almak istiyorsanız komutu grep ile kullanmamız gerekiyor.
+dpkg --get-selections | grep gedit 
+
+dpkg -L programadi komutunu sistemde kurulu bir programa ait paketin içeriğini incelemekte kullanırız
+dpkg -L gedit
+
+dpkg-reconfigure komutu sistemdeki bir paketle ilgili konfigürasyon ayarlarını düzeltmemiz gerektiğinde kullanılır.
+
+Şimdi sistemde kurulu programı kaldırma kısmını görelim.
+
+dpkg --purge remove programadi ya da dpkg --purge programadi komutlarıyla program kaldırılır.
+
+dpkg -P programadi kısa komutu da kullanılabilir.
+
+
+
+
+
+
+
+
+
+
+
 apt-get install python3 ya da apt-get remove komutları ile kurulum ve yazılım kaldırma işlemleri yapılabilir. (5)
 
 
