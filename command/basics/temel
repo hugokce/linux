@@ -1126,23 +1126,63 @@ init 6 6.çalışma seviyesine yani reboot seviyesine geçecektir.
 
 Bölüm 14 Sembolik Link - Katı Link
 
+Linux sistemlerde katı link ve sembolik link olarak 2 bağlantı türü vardır. Katı link(hard-link) ile oluşturulmuş bir bağ dosyası diğerinin
+tam anlamıyla kopyasıdır. Dosyalardan orijinali silinse bile link oluşturulan dosyalar aynı içeriği korumaya devam eder. 
+Sembolik link(soft-link) ile oluşturulan bağ dosyaları ise gerçek anlamda bir kısayol olarak kullanılır. İşlevleri orijinal dosyaya yönlendirme 
+yapmaktan ibarettir.
 
 95) inode
 
+Inode bir dosya hakkında meta verileri içeren bir yapıdır. Örneğin dosya erişim numarası gibi. Normalde bir inode benzersizdir. Fakat katı link
+ile oluşturulmuş dosyaların inodeları aynıdır. 
+Inode tablosunu görmek için df -i komutu kullanılır. Bu inode (düğüm) numaralarını incelemek için
+ls -li komutu kullanılır.
+Bu çıktının sonucunda çıkan ilk kolon inode değerleridir.
 
+Aynı inode numarasına sahip dosyaların izinleri de içeriği de aynı olacaktır. Aynı inode numarası olan dosyalar birbirinin aynı dosyalarıdır.
 
+96) Katı link ln
 
+Katı link bağlantısı için ln komutu kullanılır. Bir tane dosya oluşturup katı link bağlantısı verelim.
+touch test
+ln test testlink ile katı bağlantı oluştururuz
+ls -i test testlink dersek ikisinin de inode değerlerinin aynı olduğunu görürüz.
+1975922 test 1975922 testlink
+Bu iki dosyadan birine bir veri eklendiğinde diğerine de eklenir. 
+echo "linux commands" > test ile içine ekledik
+cat test
+cat testlink dersek ikisi de aynı sonucu verecektir.
 
+stat test testlink komutunu kullanarak da dosya durumlarını inceleyebiliriz. Bu komut çıktısında da inode numaralarının aynı olduğunu görebiliriz.
 
+Katı link bağlantısı olan dosyalardan biri silinse bile tüm dosyalar silinmez. İkisi silinirse bilgi kaybolur.
+rm test dersek
+ls dediğimizde testlink halen karşımıza gelecektir.
 
+97) Sembolik link ln -s
 
+Sembolik link oluşturmak için ln -s komutu kullanılır. 
+touch example ile yeni dosya oluşturalım
+ln -s example exampSYM diyelim 
+ls -i dediğimizde
+1975922 example 1975924 exampleSYM görüldüğü gibi inode numaraları farklı geldi.
+Dosya adlarının renkleri de farklı gelir. 
+ls -l dediğimizde satırın başında l geldiğini görürüz.
+lrwxrwxrwx başında l geldi link olduğunu anlarız. Bu karakter dosyanın kısayol bağlantısı olduğunu gösterir.
+exampleSYM > example kısmı ile de example dosyasının kısayolu olduğunu anlarız.
+ls -l example
+ls -l exampleSYM dersek yine kısayol olduğunu anlarız başında l var ve > example dosyasına linkim diyor 
+Dosyamızı stat komutu ile incelersek 
+stat exampleSYM dersek de bilgi edinebiliriz.
 
+Ayrıca file komutu ile de bilgi alabiliriz.
 
+file example dersek empty verir başka dosyanın bağlantısı olmadığını anlarız
+file exampleSYM dersek symbolic link to example der ve example dosyasının linki olduğunu anlarız.
 
+Ayrıca program dosyalarına ve dizinlere de sembolik bağlantı verebiliriz.
 
-
-
-
+Bölüm 15 Program Kurma - Kaldırma ve Sistem Güncelleme
 
 apt-get install python3 ya da apt-get remove komutları ile kurulum ve yazılım kaldırma işlemleri yapılabilir. (5)
 
