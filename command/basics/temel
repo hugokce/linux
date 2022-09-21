@@ -1261,13 +1261,47 @@ rpm -qi programadi            sistemde kurulu olan bir paket hakkında bilgi alm
 
 99) apt-get 
 
+Otomatik kurulumları şimdi inceleyelim
+Debian tabanlı dağıtımların kullandığı apt ve Redhat tabanlı dağıtımların kullandığı yum paket yönetim sistemlerine bakalım.
+Bu paket yönetim sistemleri repository ya da kısaca repos dediğimiz dağıtımın internet üzerindeki program depolarından istediğimiz
+programları sistemimize tüm bağımlılıklarıyla beraber otomatik olarak indirip kurulumunu yapar. 
+Debian sistemlerde etc/apt/sources.list altında hangi depolardan paketlerin indirileceği bilgisini bulunur
+Rpm tabanlı dağıtımlarda /etc/yum.repos.d altındaki dosyalarda bulunur.
 
+Bir program yüklemek için apt-get install programadi komutunu kullanırız.
+RedHat için yum install programadi komutunu kullanırız.
+Kurmak istediğimiz program ve depolarda olup olmadığı ile ilgili bilgi almak için
+apt-cache search programadi komutu kullanılır.
+apt-cache search bleachbit ile ararız kurmak istersek de
+apt-get install bleachbit komutunu kullanırız.
+
+Kurmak istediğimiz programla ilgili paket hakkında bilgi almak için
+apt-cache show programadi komutunu kullanırız.
+apt-cache show smplayer
+
+Sistemden programı kaldırmak için
+apt-get remove kullanılır. 
+
+apt-get --purge remove programadi şeklinde kullanırsak programı yapılandırma dosyalarıyla birlikte kaldırırız.
+apt-get purge programadi olarak da kullanılabilir. 
+apt-get purge bleachbit 
 
 apt-get install python3 ya da apt-get remove komutları ile kurulum ve yazılım kaldırma işlemleri yapılabilir. (5)
 
+Sistem Güncelleme
 
+100) apt-get update ve apt-get upgrade ile güncelleme yapılır.
 
+İki komutu birarada kullanmak istersek 
+apt-get update && apt-get upgrade komutlarını çalıştırırız.
 
+Kullandığımızın dağıtımın yeni versiyona yükseltmek için
+apt-get dist-upgrade kullanırız.
+
+Sistemde daha önceki programlardan kalan eski ve gereksiz artıkları temizlemek için kullanabileceğimiz 2 komut vardır. Bunlar 
+apt-get autoremove ve apt-get autoclean . Bu komutlarla çöplerden kurtulmuş oluyoruz.
+
+101) aptitute komutu
 
 
 
