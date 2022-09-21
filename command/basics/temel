@@ -1301,11 +1301,27 @@ apt-get dist-upgrade kullanırız.
 Sistemde daha önceki programlardan kalan eski ve gereksiz artıkları temizlemek için kullanabileceğimiz 2 komut vardır. Bunlar 
 apt-get autoremove ve apt-get autoclean . Bu komutlarla çöplerden kurtulmuş oluyoruz.
 
-101) aptitute komutu
+101) aptitude komutu
 
+Sistemi güncellemek ve program kurulumu yapmak için aptitude komutu da kullanılır.
+aptitude update 
+aptitude upgrade 
+aptitude install 
 
+Aptitude apt-gete göre gelişmiş özelliklere sahiptir. 
+Aptitude paket kurulumu yapıldığında o paket için önerilen paketleri de kurar. Ayrıca ayarları değiştirip faydalı görülen
+paketlerin de kurulumu yaptırılabilir. 
 
+aptitude -i denildiğinde interaktif olarak da program kurulumu ve güncelleme işlemleri yapılabilir.
 
+RedHat dağıtımları için yum komutlarına bakalım
+
+yum install programadi      temel program kurma komutu
+yum remove programadi       program kaldırırken kullanırız
+yum search programadi       kurmak istediğimiz bir programın depolarda olup olmadığını kontrol etmek için kullanırız
+yum info programadi         program paket hakkında bilgi almak için kullanırız.
+yum list_updates            güncelleştirme gerektiren paketleri listelemek için kullanırız.
+yum update ya da yum upgrade sistemi güncellemek için kullanılır
 
 
 
