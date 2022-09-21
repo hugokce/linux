@@ -1323,9 +1323,29 @@ yum info programadi         program paket hakkında bilgi almak için kullanır�
 yum list_updates            güncelleştirme gerektiren paketleri listelemek için kullanırız.
 yum update ya da yum upgrade sistemi güncellemek için kullanılır
 
+Program kurmanın bir diğer yolu da ihtiyacımız olan programın kaynak kodlarını indirip derlemektir.
+./configure
+make
+make install
 
+Kaynak kodu indirilen paketin içinde bulunan readme, install gibi yerler incelenmelidir. Bazen install scriptleri konsoldan çalıştırılarak 
+kurulum yapılabilmektedir. Kurulacak programın kaynak kodlarının olduğu dosya içindeyken örneğin dosyamız home klasöründe
+cd kaynak_kod_dosyası deyip o dosya içindeyken sırasıyla ./configure, make ve make install komutlarını kullandığımızda program kurulmuş
+olacaktır.
 
+102) tasksel komutu
+Sistemimize çeşitli server programları ve diğer paketleri kurmak için tasksel aracından faydalanırız. 
+Tasksel dediğimizde arayüz çıkar karşımıza. 
+tasksel install --list-tasks 
 
+Bölüm 16 Joker Karakterler Wildcards
+
+*       her türlü karaktere uyar. Özellikle belirli bir özellikteki tüm dosyaları seçip onlarla işlem yapmada kullanılır
+?       herhangi bir tek karakterle eşleşir
+[a,b,c] a veya b veya c karakterlerinden birine uyar biriyle eşleşir
+[abc]   belirtilen karakter listesiyle eşleşir
+[a-c]   arasındaki karakterle eşleşir.
+[!abc]  listede verilen karakterlerin haricindekilerle eşleşir.
 
 
 
