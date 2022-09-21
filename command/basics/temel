@@ -1340,22 +1340,112 @@ tasksel install --list-tasks
 
 Bölüm 16 Joker Karakterler Wildcards
 
+103)
+
 *       her türlü karaktere uyar. Özellikle belirli bir özellikteki tüm dosyaları seçip onlarla işlem yapmada kullanılır
 ?       herhangi bir tek karakterle eşleşir
 [a,b,c] a veya b veya c karakterlerinden birine uyar biriyle eşleşir
 [abc]   belirtilen karakter listesiyle eşleşir
 [a-c]   arasındaki karakterle eşleşir.
 [!abc]  listede verilen karakterlerin haricindekilerle eşleşir.
+[!a-c]  arada kalan karakterler haricindekiler eşleşir.
+[0-9]   0'dan 9'a kadar olan karakterlere uyar.
+{falan,filan} listedeki kelimelerle eşleşir.
 
+ls -l /etc/host* etc dizini altında ve host ile başlayan tüm dosyaları listeler.
 
+/etc dizini altında bulunan dosyalardan sadece hosts.allow ve hosts.deny dosyalarını listelemek için
+ls -l /etc/hosts.{allow,deny} kullanılır.
 
+Eğer dizin altında LISTA,LISTB ve LISTC dosyaları varsa ve bu dosyaları listelemek istiyorsak
+ls LIST[A-C] komutu kullanılır.
 
+rm * ile dizin altındaki tüm dosyaları sileriz.
+rm -i * ile silmeden önce sorar.
 
+Bölüm 17 Regex Expression - Düzenli İfadeler
 
+Düzenli ifadeler programlamada ve shell işlemlerinde kullanılır. Verilerden ihtiyacımız olan bilgilerin çekilmesi, kullanıcı girdisinin denetlenmesi
+gibi işlerde sıklıkla kullanılır. Örneğin verilen bir şablon ifadenin aranması basit bir işlemken bu işlemi karmaşık ve büyük dosyalardan çekerken tam
+olarak istediğimiz şablonun aramasını yapmak için düzenli ifadeler kullanmamız gerekecektir. Sadece arama işlemlerinde değil aranılan ifadelere uygulanacak
+işlemler için de düzenli ifadelerden faydalanılır.
 
+104) 
+[]     Köşeli parantezin içindeki karakterlerin istenilen şablonda kullanılacağını belirtir. Örneğin users.txt dosyasındaki ifadelerden A ile başlayan
+ve h ya da l ile devam eden ifadelerin sıralanması için grep A[hl] users.txt komutunu kullanmamız gerekir.
+grep A[hl] users.txt
+Ali
+Ahmet
 
+A ile başlayan ve a-z arasındaki karakterlerden biriyle devam eden ifadeleri bulmak için de 
+grep A[a-z] users.txt kullanılır   (Ali , Ahmet, Aslan, Mehmet, Zeynep)
+Ali
+Ahmet
+Aslan
 
+Nokta .   Nokta ile gösterilen yere herhangi bir karakterin gelebileceği belirtilmiş olur.  (adana,ankara,konya,izmir)
+grep a.a test
+adana
+ankara 
 
+Yıldız * Herhangi sayıdaki herhangi bir karaktere karşılık gelir.
+
+^ satır başına karşılık gelir
+
+$ satır sonunu ifade eder.
+
+cat /etc/passwd | grep bash$   bash ile bitenleri verecek
+
+[^..] Kümenin içindeki karakterlerin haricindeki herhangi bir karaktere karşılık gelir. (adana,ankara,konya,izmir,123,456,789)
+cat test | grep [^0-9]   
+adana
+ankara
+konya
+izmir
+
+\{n\}    kendisinden önceki karakterin n kez tekrar edildiğini gösterir.
+
+\{n,m\}  kendisinden önceki karakterin en az n kez en fazla m kez olduğunu gösterir
+
+\{n,\}   kendisinden önceki karakterin en az n kez olduğunu gösterir.
+
+\+       kendisinden önceki karakterin bir ya da daha fazla olduğunu gösterir.
+
+\?       kendisinden önceki karakterin sıfır ya da bir kez bulunduğunu gösterir.
+
+\|       kendisinden bir önceki veya bir sonraki karaktere karşılık gelir.
+
+\(..\)   grup olarak düzenli deyimleri tanımlar.
+
+\        özel karakterlerin normal karakterler olarak algılanmasını sağlar.
+
+a\?b     b,ab...
+a[^a-z]  a0, a1,aZ
+
+^a       satır başında a karakteriyle başlayan sözcükler
+
+^zzz veya ^z\{3\}  satır başında 3 adet z karakteri bulunan sözcükler
+
+\{3\|5\}\+  içinde 3 veya 5 sayılarından en az bir kez geçen sözcükler
+
+\<Zey   Zey ile başlayan satırları bulur
+Zeynep kemal Ceren cenK Zengin
+grep "\<Ze" test
+Zeynep
+Zengin
+
+yi\>    yi ile biten satırları bulur.
+grep "in\>" test
+Zengin
+
+Örneğin ^B.*x$ satır başları B ile başlayan ve satır sonları da x ile biten ifadeleri bulabiliriz
+Zeynep kemal Ceren cenK Zengin Best of Linux
+grep ^B.*x$ test
+Best of Linux
+
+Bölüm 18 sed ve Awk
+
+105)
 
 
 
