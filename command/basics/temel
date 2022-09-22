@@ -1541,7 +1541,19 @@ Eğer awk "{print}" kullanırsak komutun ardından yazdığımız ifade ekrana y
 Komutları bir dosyadan alarak kullanmak istersek awk -f <script_file> komutunu kullanırız. Bir text dosyasına awk kodlarını yazıp -f 
 parametresiyle bu dosyayı kullanabiliriz. Dosyanın uzantısı olmasına gerek yok ama .awk olarak kaydedersek sonradan baktığımızda awk wcript 
 dosyası olduğunu anlayabiliriz. 
+Küçük çaplı işlemler için komut satırından ilerlemek iyiyken büyük bir dosya içinde çok sayıda işlem yapmamız gerekirse bu durumda bir script dosyası
+kullanmak daha mantıklıdır. 
 
+BEGIN {
+ print "linux commands"
+}  
+kodunu sample.awk dosyasına yazıp kaydedelim. Sonra awk -f sample.awk komutunu çalıştırıyoruz. Sonuçta linux commands yazıyor terminale.
+
+Awk dışında GNU awk gawk ve nawk kullanımları da mevcuttur.
+
+which awk deyince /usr/bin/awk gelir
+which nawk deyince /usr/bin/nawk gelir
+nawk -f sample.awk  komutu ile  linux commands  yazar.
 
 
 
