@@ -1499,8 +1499,36 @@ L veya l karakterleriyle başlayan ve x veya X karakterleriyle biten ifadeleri L
 Metin üzerinde değişiklik yapılan yerleri parantez arasına alarak belirtmek istersek
 sed "s/com/(COM)/g" sample.txt kullanırız.  çıktı olarak (COM)mands verecektir.
 
+Bir dosyadaki tüm büyük harf karakterlerini silmek için
+sed "s/[A-Z]//g" list komutunu kullanırız. AnKAra, IStanBuL, NewYork, HACKEr
+nra, tanu, ework, r
 
+Büyük harf dışında kalan her şeyi silmek için
+sed "s/[^A-Z]//g" list kullanılır.   AKAISBNLYHACKE
 
+Dosyadaki küçük harfler ve rakamlar haricindeki her şeyi silmek istersek
+sed "s/[^1-9a-z]//g" list 
+
+Değişiklik yapmak istediğimiz dosyada, sed tarafından operatör olarak algılanabilecek özel karakterlerin bulunduğu bir ifade geçiyorsa,
+bu ifadelerle ilgili değişiklik yapabilmek için \ ters slash sembolünden faydalanabiliriz.
+Bu sembol kendisinden sonra gelen ifadenin normal bir string (ifade) olarak algılanmasını sağlar. 
+Örneğin example dosyasında /etc/passwd ifadesi olsun ve bunu important ifadesi ile değiştirmek için \ faydalanabiliriz.
+
+sed "s/\/etc\/passwd/important/g" example
+sed "s_/etc/passwd_important_g" example
+sed "s:/etc/passwd:important:g" example
+
+Bir metin dosyasındaki karakterlerden istediğimiz karakterleri başka karakterlerle değiştirmek için 
+sed "y/../../" <file> kalıbını kullanmamız gerekli.
+
+Mesela test isimli dosyamızda bulunan i karakterini I ile e karakterini E ve g karakterini de G ile değiştirmek için
+sed "y/ieg/IEG/" test komutunu kullanırız.
+
+Bir dosyadan komutların alınarak işlenmesiyle ilgili örnek yapalım
+Bir metin dosyasının içine y/ieg/IEG/ yazarak change.sed adıyla kaydedelim.
+Sonra test isimli dosyamızda işlem yapmak için sed -f change.sed test komutunu kullanırız.
+
+106) Awk komutu
 
 
 
