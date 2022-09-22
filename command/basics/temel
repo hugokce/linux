@@ -1530,7 +1530,17 @@ Sonra test isimli dosyamızda işlem yapmak için sed -f change.sed test komutun
 
 106) Awk komutu
 
+Metin dosyalarını istediğimiz foramtta işleyerek değişiklikler yapmamızı sağlayan script dilidir. Interpreter bir dildir. Eğer komutlar
+bir dosyadan alınıryorsa alınan komutlar sırasıyla yorumlanıp çalıştırılır. Genel olarak awk dosyalarda istenilen kriterlere göre
+arama yapma ve düzenleme işleminde kullanılır.
 
+Komut satırından awk "BEGIN {print \"command line\"}" komutununun sonucunda ekrana command line yazar.
+
+Eğer awk "{print}" kullanırsak komutun ardından yazdığımız ifade ekrana yazılır. Çıkmak için CTRL+D kullanılır
+
+Komutları bir dosyadan alarak kullanmak istersek awk -f <script_file> komutunu kullanırız. Bir text dosyasına awk kodlarını yazıp -f 
+parametresiyle bu dosyayı kullanabiliriz. Dosyanın uzantısı olmasına gerek yok ama .awk olarak kaydedersek sonradan baktığımızda awk wcript 
+dosyası olduğunu anlayabiliriz. 
 
 
 
