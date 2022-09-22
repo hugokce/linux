@@ -1478,11 +1478,26 @@ sed -n "s/Linux/Hacking/p" test ile metinde geçen bir kelimeyi başka bir kelim
 Bir metin içindeki kelimeleri değiştirirken g parametresinin ne işe yaradığını da görelim.
 Dosyamızda Linux yazan yerleri Kali ile değiştirelim
 
-cat test | sed "s/Linux/Kali/"    bu komutla ikinci kelimedeki Linux değişmez
+cat test | sed "s/Linux/Kali/"    bu komutla ikinci kelimedeki Linux değişmez her satırdaki ilk kalıp değiştirilir.
 cat test | sed "s/Linux/Kali/g"   bu komutla tüm kelimeler değişir.
 
+Belirli satırları silme üzerine örnek yapalım. 2,3 ve 4. satırları silelim
+sed -e "2,4d" test 
 
+Bu silme komutuyla dosyamızın içinde herhangi bir değişiklik olmuyor sadece ekrana yansıyan kısımda görünüyor.
+Değişiklikler kalıcı olsun istersek
+sed -e "2,4d" test > test1 şeklinde başka bir dosyaya yazmamız gerekecektir.
 
+Eğer dosyadaki bütün satırların ilk 2 harfini silmek istersek
+sed "s/^..//" test kullanırız
+
+Köşeli parantez kullanarak birden çok seçim yapabiliriz.
+cat samples.txt Linux commands, linux commands, liNux commands, linuX commands
+sed "s/[Ll]inu[xX]/LINUX/g" sample.txt   LINUX commands, LINUX commands, liNux commands, LINUX commands olarak çıktı verecektir.
+L veya l karakterleriyle başlayan ve x veya X karakterleriyle biten ifadeleri LINUX ifadesiyle değiştir ve bunu tüm metin içinde yap.
+
+Metin üzerinde değişiklik yapılan yerleri parantez arasına alarak belirtmek istersek
+sed "s/com/(COM)/g" sample.txt kullanırız.  çıktı olarak (COM)mands verecektir.
 
 
 
