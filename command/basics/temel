@@ -1445,9 +1445,41 @@ Best of Linux
 
 Bölüm 18 sed ve Awk
 
-105)
+sed ve awk komutları
 
+Sed stream editor demektir. sed ve awk programın bizzat kendisidir.
 
+105) sed stream editor komutu
+sed programını kullanarak metin belgeleri üzerinde birtakım değişiklikler yapabiliriz. Bu işlemleri konsoldan direk komutları girerek veya
+bir dosyadan komutların alınmasını sağlayarak yapabiliriz. İşlemleri yaparken kullanabileceğimiz operatörler ve parametler alttaki gibidir.
+-n  sadece belirtilen satırlara uygulama yap
+-e  bir sonraki komut bir düzenleme komutu
+-f  bir sonraki ifade bir dosya adı (dosyadan girdi alınacaksa)
+p   print
+d   delete
+s/değişecek ifade / yerine gelecek ifade /g  bu kullanımla bir metin dosyası içindeki ifadeler değiştirilebilir. Sondaki g eklenmezse dosyanın
+tamamı yerine her satırdaki ilk kalıp baz alınır.
+
+5d  5.satırı sil 
+/^$/d tüm boş satırları sil 
+s/*$// her satırın sonundaki tüm boşlukları sil
+/abc/d abc ifadesi olan tüm satırları sil
+s/00*/0/g  ardışık sıfırların yerine tek sıfır yaz
+sed -e "s/apple/orange/g" -e "s/prg/program/g"  aynı anda birden çok değiştirme yapmak için -e kullanılabilir.
+s/\./&\/g noktadan sonra gelen karakterleri yeni satıra kaydır
+10,20d 10.satırla 20.satır arasını sil (10 ve 20.satır dahil)
+/\*\**\*$/d satırın tamamını ***** olan satırı sil
+sed -e "s/[^|]*$//" file belirtilen dosyadaki tab ve boşluk karakterlerini kaldır
+
+sed -e "2d" test  ile bir metin dosyasında bulunan içeriğin ikinci satırını sileriz.
+
+sed -n "s/Linux/Hacking/p" test ile metinde geçen bir kelimeyi başka bir kelimeyle değiştirebiliriz. p ile de ekrana yazdırırız.
+
+Bir metin içindeki kelimeleri değiştirirken g parametresinin ne işe yaradığını da görelim.
+Dosyamızda Linux yazan yerleri Kali ile değiştirelim
+
+cat test | sed "s/Linux/Kali/"    bu komutla ikinci kelimedeki Linux değişmez
+cat test | sed "s/Linux/Kali/g"   bu komutla tüm kelimeler değişir.
 
 
 
