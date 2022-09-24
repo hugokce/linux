@@ -1555,6 +1555,82 @@ which awk deyince /usr/bin/awk gelir
 which nawk deyince /usr/bin/nawk gelir
 nawk -f sample.awk  komutu ile  linux commands  yazar.
 
+': Komutlar tırnak işareti içinde yazılır sonra işlem yapılacak dosya belirtilir.
+$: İşlenecek dosyadaki kolonları ifade eder. Herhangi bir değişiklik yapılmazsa kolonlar boşluklara ayrılmış kabul edilir. 
+$0 tüm satırlar(her bir satır için satırın tamamına karşılık gelen ifade)
+$1 satırın birinci kolonu
+$2 satırın ikinci kolonu demektir.
+
+NR: Toplam kayıt sayısı satır sayısı
+NF: Sütun (kolon/ alan) sayısı 
+-F: Alan ayracı işaretini belirtmek için
+/../: Düzenli ifadeler, iki / arasında kullanılır.
+FS Alan ayracı
+
+Ayrıca awk içerisinde matematiksel operatörler ve karşılaştırma ifadeleri de kullanılabilir.
+(+,+=,++,-,-=,--,*,*=,/,/=)   (<,<=,>,>=,==,!=)
+
+Dosyanın içeriğini olduğu gibi göstermek için
+awk '{print $0}' <file>
+awk '{print $0}' test
+Dosyada geçen herhangi bir ifadeyi sorgulamak için '/../' kalıbını kullanmalıyız. Sorgulanan ifadeyle ilgili satır ya da satırlar görüntülenecektir.
+cat test1   Linux BackTrack 5 RedHat System Mng.
+awk '/Red/' test1
+RedHat System Mng.  döner.
+
+Bir dosyada bulunan satırların birbirinden ayrılmış alanlarının en başındaki alanda herhangi bir ifadenin geçip geçmediğini görüntülemek için
+awk '/string/ {print $1}' <file>
+awk '/Kali/ {print $1} test
+Kali Linux 2.0 ayırdığında Kali aradığımız için sadece Kali yazdırır.
+
+Eğer alanlardan en baştakileri görmek istiyorsak 
+awk '{print $1}' test kullanırız.  İlk kolonları alır.
+
+Dosya içindeki ifadeler arasında ayraç olarak boşluk değil de : işareti olsaydı o zaman awk -F: şeklinde bir kullanımı tercih etmemiz gerekirdi.
+cat personal  Ali:312:Ankara
+awk '{print $1}' personal dediğimiz zaman
+Ali:312:Ankara
+awk -F: '{print $1}' personal dediğimiz zaman
+Ali
+Veli
+Kemal olarak ayırır ve ilk kolonu verir
+
+Ayrılmış alanlardaki (kolon/sütun) ifadelerden 1. ve 3. alanlardaki ifadeleri görmek için '{print $1,$3}' kullanılır
+awk -F: '{print $1,$3}' personal
+Ali Ankara
+Veli İstanbul
+awk -F: '{print $1$3}' personal
+AliAnkara
+Veliİstanbul şeklinde döner.
+
+-F:  yerine FS=":" olarak da kullanabiliriz.
+awk -F: '{print $3}' personal
+awk '{print $3}' FS=":" personal
+FS=":" ya da FS=':' ya da FS=: şeklinde de kullanabiliriz.
+
+awk -F: '{print "city: " $3}' personal  komutunun çıktısı
+city:Ankara
+city:İstanbul şeklinde görünür
+
+Bir dosyadaki tüm kayıtların içinden sadece belirli bir ifadenin geçtiği satırları görmek için örneğin 
+distro isimli dosyamızdaki kayıtlardan 1. alanda Kali ifadesi geçen yerleri görmek için
+awk '$1 =="Kali" {print $0}' distro
+Kali Debian Wheezy  satırını verir
+
+Ayraç olarak boşluk yerine ":" kullanmış olsaydık komutumuz -F: ile birlikte kullanacaktık.
+Yukarıdaki örnekte 1. alanda Kali olan satırlar içindi Eğer 2. alanında Debian geçen satırları görmek istersek bu sefer
+awk '$2 =="Debian" {print $0}' distro
+Kali Debian Wheezy
+BackTrack Debian Ubuntu  şeklinde döner
+
+
+
+
+
+
+
+
+
 
 
 
