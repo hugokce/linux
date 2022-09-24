@@ -1623,8 +1623,10 @@ awk '$2 =="Debian" {print $0}' distro
 Kali Debian Wheezy
 BackTrack Debian Ubuntu  şeklinde döner
 
-
-
+Metin dosyalarında awk kullanırken 
+&& ve, || veya anlamına gelir.
+distro dosyasında Kali ve Debian kelimeleri geçen satırları görmek için
+awk '/Kali/ && /Debian/' distro komutunu kullanırız
 
 
 
