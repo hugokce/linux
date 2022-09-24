@@ -1628,6 +1628,48 @@ Metin dosyalarında awk kullanırken
 distro dosyasında Kali ve Debian kelimeleri geçen satırları görmek için
 awk '/Kali/ && /Debian/' distro komutunu kullanırız
 
+Ubuntu veya RedHat kelimeleri geçen satırları görmek için
+awk '/Ubuntu/ || /RedHat/' distro
+
+İçinde Debian geçmeyen kayıtları getirmek için
+awk '!/Debian/' distro
+
+Eğer dosyadaki karakterleri büyük karakter yapmak istersek 
+awk '{print toupper($0)}' distro kullanırız.
+
+Komut çıktılarının düzenlenmesinde de awk kullanılabilir.
+ls -l komut çıktısında 1. ve 9. alanları listelemek için 
+ls -l | awk '{print $1,$9}' komutunu kullanırız.
+
+Bir dosyada 3. satırdan sonraki satırları listelemek için NR>3 kullanılır
+awk 'NR>3 {print}' test
+
+Bir dosyadaki satır sayısının listelenemesine bakalım. /etc/shadow dosyasına bakalım
+
+awk -F: 'END {print NR}' /etc/shadow
+
+İçeriğini görmek istediğimiz dosyadaki satırları numaralayıp görmek istersek
+awk '{print NR "" $0}' test 
+
+Dosyadaki alanlardan en baştaki ve en sondaki alanları listeleyelim. /etc/passwd dosyasına bakalım
+
+awk -F: '{print $1,$NF}' /etc/passwd
+
+Komut sonrası listelenen dosyaların toplam boyutunu alalım 3 kod da aynı işi görür
+
+ls -l | awk '{sum+=$5} END {print sum}'
+ls -l | grep -v '^total' | awk '{sum+=$5} END {print sum}'
+ls -l | awk '/^total/{getline} {sum+=$5} END {print sum}'
+
+/etc/passwd dosyasındaki satırların bölüm/alan aralarına tab kadar boşluk koyalım
+awk 'BEGIN {FS=":";OFS="\t";} {print $1,$7,$6;}' /etc/passwd
+
+Bir dizin/klasör altında bulunan metin dosyalarına txt uzantısı vermek için
+ls | awk '{print "mv "$1" "$1".txt "}' | sh    komutu kullanılır 
+
+Bölüm 19 Vim Editörü
+
+107)
 
 
 
