@@ -1669,15 +1669,80 @@ ls | awk '{print "mv "$1" "$1".txt "}' | sh    komutu kullanılır
 
 Bölüm 19 Vim Editörü
 
-107)
+vi editörünün görsel arayüzlü olanı gvimdir. Eski adı vi olan aracın adı VIM Vi Improved olmuştur.
+107) vim
+vim komutu ile editör terminalde açılır.
+i ye bastığımızda insert komutu alır ve içine kod yazmaya başlayabiliriz.
+Insert modundan çıkmak için ESC yapılır.
+:q  editörden çıkmak için kullanılır. Yaptıklarımızı kaydetmediysek kaydetmemiz için sorar.
+:q! Belgeyi kaydetmeden çıkmak için kullanılır.
+:w  Belgeyi kaydetmek için kullanılır. Vim editöründen çıkmaz.
+:wq Belgeyi kaydedip çıkmak için kullanılır. Açtığımız dosya yeni açıldı ise ve adını vermediysek :wq test diyerek
+test ismini verebiliriz.
 
+vim file komutu ile var olan bir dosyayı açabiliriz.
+vim ile dosyayı açınca en alt satırda 489L  489 satır demektir
+20651C 20651 karakter demektir.
 
+ZZ  belgeyi o anki haliyle kaydedip çıkar. Bu komutla :ZZ değil ZZ kullanılır.
+:x  vimden çıkar dosya değişmemişse kaydeder.
+:r file belirtilen dosyayı okur ve imlecin bulunduğu noktadan başlayıp araya ekler.
 
+file_A vim ile açtık diyelim vim file_A 
+sonra :r file_B dersek file_B'nin içeriğini file_A içine ekleyebiliriz. Burada imlecin olduğu yere ekler.
 
+vim editörü ile çalışırken konsol komutlarını da kullanabiliriz. 
+vim ile açtığımız dosyada :ls dersek ls sonucu karşımıza döner.
+Sonrasında Entera basarsak vim editörüne döneriz.
+Konsol komutları ! işaretinden sonra kullanılıyor. Bu ls komutunun çıktısının eklenmesini istersek editörde :r !ls yazılır.
 
+vim editöründe 2 dosya ile geçişli bir şekilde çalışmak istersek
+vim file_1 file_2 deriz
+Bu şekilde file_1 çalışmaya başlarız. file_2ye geçmek istersek :next komutu kullanılır file_2ye geçilir.
+Tekrar file_1e dönmek istersek :previous komutu kullanılır.
+Kaydedip diğer dosyaya geçmek için :w deriz. Değişiklik yapmadan çıkmak için :q! kullanırız.
 
+Vim editör çalıştığımız dosyadaki string ifadeleri değiştirmemize imkan verir. 
+file_A 'daki Kali ifadesini Debian ile değiştirmek istersek 
+:s/kali/debian/g komutunu kullanırız.
 
+Yine 2. ve 3. satırda bulunan linux kelimelerini LINUX ile değiştirmek istersek
+:2,3s/linux/LINUX/g  kullanırız.
 
+vim - kullanırsak bu aşamadan sonra yazdığımız metinler saklanır Sonra  CTRL+D ile metin girişi sonlandırılır.
+Sonra vim editörü açılır. Çalıştığımız dosyayı açtıktan sonra imlecin 10.satırda konumlanması için
+vim +10 file komutu kullanılır. 
+vim + file komutu imleci son satıra konumlandırır.
+vim -R file komutu ile dosyayı salt okunur açarız.
+Read only açtığımız dosyaya insert ile eklemek yapmak istediğimizde müsaade etmeyecektir. 
+Kaydetmek istersek :w!  ya da :set noro komutunu kullanırız. 
+
+Dosyayı şifrelemek istersek vim -x filename kullanırız bundan sonra bize şifre girmemizi ister.
+Dosyayı açıp değişiklik yaptığımızda crypted edildiğini görürüz. 
+file filename dersek içi değişik karakterlerle doldurulmuş halde gözükür. 
+vim filename dersek şifreyi sorar ve içine tekrar girmemizi sağlar.
+
+Satırları numaralandırmak için
+:set nu komutunu kullanırız.
+
+İmlecin 11. satıra gitmesini istersek :11 kullanabiliriz.
+
+vim editörle ilgili tüm ayarları listelemek istersek :set all komutunu kullanırız.
+
+Geriye dönük komutları listelemek için :history komutunu kullanırız.
+Daha önce kullanılan komutlardan kaç tanesinin hafıza tutulduğunu :set history ile öğrenebiliriz.
+Tutulan komut sayısını değiştirmek için :set history XY   :set history 2000 gibi.
+
+Metin içinde arama yapmak için komut modundayken /aranacakkelime şeklinde arama yapabiliriz.
+/gvim gibi.  böylece imleç aradığımız kelimenin yanına gider.
+Metinde arama yaparken küçük büyük harf duyarlılığını kaldırmak için :set ic kullanırız.
+
+vim editörünün ayar dosyası vimrc dosyasıdır. Satır başlarında bulunan " işareti yorum satırını gösterir. 
+" işaretini kaldırırsak o satırdaki ayar aktif olur. 
+
+Bölüm 20 Network Komutları
+
+108) ifconfig
 
 
 
