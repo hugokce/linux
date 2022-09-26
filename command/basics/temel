@@ -1772,6 +1772,32 @@ ifconfig eth0 192.168.1.12 netmask 255.255.255.0 komutunu kullanırız.
 
 109) ip komutu
 
+ip komutunu çeşitli düzenlemeler yapmak için kullanabiliriz. ip numarasını öğrenme, routing tablosunu görüntüleme, arp önbelleğini listeleme vs.
+
+ip adres yapılandırmasıyla ilgili bilgileri görmek için ip addr, ip addr show ya da ip a komutlarını kullanabiliriz.
+
+Ethernet arayüzlerinin bağlantı durumunu görmek için ip link komutunu kullanırız.
+
+Sistemdeki routing tablosunu görmek için ip route kullanılır.
+
+Arp önbelleğini görmek için ip neigh komutunu kullanırız.
+
+110) route komutu
+
+Sistemdeki yönlendirici tablosunu görmek için route -n komutunu kullanırız.
+Bu komut çıktısında gateway yani ağ geçidi bizim yerel ağdan internete çıkarken kullandığımız yönlendirme adresidir. Yerel ağımızda bu işi modem yapar.
+Gateway adresini değiştirmek için route add default gw 192.168.1.1 komutu kullanılır.
+
+111) ping komutu
+
+Yerel ağda ya da uzak ağda bir adresin aktif olup olmadığını anlamak için ping komutu kullanılır. Ping komutu ICMP protokolü üzerinden ECHO_REQUEST
+göndermek için kullanılır. İsteği alan sunucu isteğe cevap verir. Arada geçen zaman hesaplanıp kullanıcıya gösterilir. Ping komutu genellikle karşıdaki
+makinenin ayakta olup olmadığını kontrol etmek için kullanılır. 
+
+
+
+112) traceroute komutu
+
 
 
 
