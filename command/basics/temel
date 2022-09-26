@@ -1792,11 +1792,129 @@ Gateway adresini değiştirmek için route add default gw 192.168.1.1 komutu kul
 
 Yerel ağda ya da uzak ağda bir adresin aktif olup olmadığını anlamak için ping komutu kullanılır. Ping komutu ICMP protokolü üzerinden ECHO_REQUEST
 göndermek için kullanılır. İsteği alan sunucu isteğe cevap verir. Arada geçen zaman hesaplanıp kullanıcıya gösterilir. Ping komutu genellikle karşıdaki
-makinenin ayakta olup olmadığını kontrol etmek için kullanılır. 
-
-
+makinenin ayakta olup olmadığını kontrol etmek için kullanılır. Ping isteğine cevap gelmiyor ise makine çalışmıyor olabilir. Ping komutu çıktısından
+iki makine arasındaki transferin ne kadar hızlı olabileceği hakkında tahmin yürütebiliriz. 
+ping başlatınca CTRL+C ile kesene kadar hedef makine paket göndermeye devam eder. O yüzden örneğin 3 defadan sonra bitsin istersek
+ping -c 3 hedefip komutunu kullanırız.
 
 112) traceroute komutu
+
+Belli bir hedefe gönderilen network paketinin hedefe ulaşana kadar geçtiği hostları (yönlendiricileri) görmemizi sağlayan komut traceroute komutudur.
+traceroute google.com örneğin.
+
+113) netstat komutu
+
+Ağ bağlantıları, yönlendirme tablosu vs ile ilgili bilgileri listelemek için kullanılan komut netstat komutudur. Sistemdeki bağlantılarla ilgili
+bilgi almada tercih edilen kullanım şekli netstat -antp komutudur.
+
+Burada antp parametreleri arasındaki t ile TCP bağlantılarını belirtmiş olduk. Eğer UDP protokolüyle ilgili bağlantıları görmek istersek 
+parametreleri anup şeklinde kullanabiliriz.
+netstat -anup
+
+netstat aracı/komutu -i ile çalıştırıldığı zaman sistemdeki arayüzler ile ilgili istatistiksel bilgiler verir. Bu bilgiler arasında gönderilen 
+paket sayısı (TX-OK), gönderilen paketlerde oluşan hata sayısı (TX-ERR), gönderilen paketlerden çöpe atılan sayısı (TX-DRP), giden paketlerde
+oluşan üstüne yazma hatası sayısı (TX-OVR) gibi bilgiler bulunur.
+netstat -i
+
+114) nslookup komutu 
+
+Bu komut DNS sunucusu ile haberleşip DNS sorguları yapmak için kullanılmaktadır. En basit sorgu formatı host isminden ip adresi sorgulaması yapmaktır.
+Temel kullanım kalıbı nslookup seçenek sorgu şeklindedir. 
+
+Herhangi bir parametre almadığı zaman nslookup interaktif modda çalışmaya başlayacaktır. 
+Interaktif moddayken de sorgulama yapılabilmektedir. Varsayılan olarak düz ve ters kayıt sorgulama işlemleri yapılır. 
+Yani makine ismi verilirse makinenin IP adresi, makine IP adresi verilirse makinenin ismi sorgulanır. 
+nslookup  dedik > imleci çıktı
+> facebook.com dedik 173.252.120.68  ip geldi
+> 173.252.120.68 dedik bu sefer de facebook.com dedi.
+
+Önce ip adresi sonra da ip adresinden makine ismi sorgulaması yaptık. > interaktif modda çalıştığını gösterir. 
+Interaktif modda sorgulama yaparken istediğimiz zaman sorgulama tipini değiştirebiliriz. Örneğin
+
+NS: Verilen alan için yetkili DNS sunucularının listesini görmek için kullanılır. 
+MX: Verilen alan veya sunucu için gönderilen e-postaları kabul eden sunucuları görmek için kullanılır.
+ANY: Tüm sorgulama tiplerini kullanarak gerekli bilgileri almak için kullanılır. 
+SOA: Alandan sorumlu kişi, TTL süresi, alanın seri numarası gibi bilgileri almak için kullanılır. 
+
+Sorgulama tipini değiştirmek için interaktif modda "set query=sorgu_tipi" veya "set type=sorgu_tipi" komutu verilmelidir.
+set query=NS
+set query=SOA
+set query=MX
+set query=ANY
+nslookup
+>set type=mx
+> twitter.com   şeklinde kullanırız.
+
+115) whois komutu
+
+Hedef sistemle ilgili whois  bilgisi almak için kullanılır. Yüklemek için apt-get install whois kullanılır. rpm sistemlerde yum install whois kullanılır.
+whois turktelekom.com.tr
+
+116) host komutu
+
+host komutu bilgi alma komutlarından biridir. Kullanımı host hedef_adres şeklindedir. 
+host HOST
+host -t MX HOST
+host -t NS HOST
+host -a HOST 
+
+host turktelekom.com.tr
+host -t MX turktelekom.com.tr
+host -t NS turktelekom.com.tr
+
+117) dig komutu
+
+Ayrıntılı bilgi alma araçlarından biridir. Kullanımı host ve nslookup gibidir.
+dig turktelekom.com.tr
+
+dig -t MX turktelekom.com.tr
+dig -t NS turktelekom.com.tr
+
+118) arp komutu
+
+Sistemde IP adresi - MAC adresi eşleştirmelerinin tutulduğu bir tablo vardır. Bu tabloya arp tablosu denir. Bu tabloyu görmek için arp ya da arp -a komutu
+kullanılır.
+
+arp -a
+arp
+
+119) tcpdump komutu
+
+Sistemimize yapılan bağlantıları ve  sistemimizden dışarıya yapılan bağlantıları canlı olarak izlemek için tcpdump kullanılır. Bu komuttan sonra bağlantı
+istekleri dinlenmeye başlar ve konsolda görüntülenir. Yani ağdaki paketleri yakalayıp görüntüler. Ayrıca daha önceden kaydedilmiş paketler üzerinde de 
+inceleme yapabilir. Adres çözümleme yapmadan paketleri yakalaması için n parametresiyle kullanım örneği alttaki gibidir.
+tcpdump -n
+
+120) dns Ayarı
+
+Sistemimize ait DNS ayarlarıyla ilgili bilgi ve ayar dosyası /etc/resolv.conf dosyasıdır. Bu dosya üzerinde değişiklik yaparak DNS ayarlarını istediğimiz
+gibi düzenleyebiliriz. 
+echo "nameserver 4.2.2.2" > /etc/resolv.conf
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+cat /etc/resolv.conf 
+
+Yapılan ayarlamaların kalıcı olması için de update-rc.d networking defaults komutu kullanılabilir. 
+
+121) hosts dosyası
+
+Sadece o sisteme ait yerel bir alan adı sunucusu gibi işlevi olan dosyadır. Herhangi bir alan adı çözümlemesi yapılırken önce bu dosyaya bakılır. Yerel olarak
+IP ve alan adı eşleştirmeleri düzenlenebilir. Dosya /etc dizini altında yer alır.
+
+cat /etc/hosts
+127.0.0.1 localhost
+127.0.1.1 kemal
+
+Bölüm 21 SSH Servisi
+
+122)
+
+
+
+
+
+
+
+
 
 
 
