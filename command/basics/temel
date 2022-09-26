@@ -1744,6 +1744,42 @@ Bölüm 20 Network Komutları
 
 108) ifconfig
 
+Linux sistemlerde ip yapılandırmasıyla ilgili ayarları görmek için ifconfig komutunu kullanırız.
+eth0 bizim ethernet kartımızı gösterir. Başka ethernet kartları da varsa eth1,eth2 şeklinde görülür. 
+lo olarak gördüğümüz bilgisayarın kendisidir. localhost 
+wlan0 ise kablosuz ağı ifade eder ve karşısında ağ yapılandırmasıyla ilgili bilgiler bulundurur. ip adresi, mac adresi, broadcast adresi vs.
+
+Eğer kablosuz ağdan bağlanıyorsak bu ağla ilgili bilgileri görmek istiyorsak 
+iwconfig komutunu kullanırız. 
+
+Kablolu bağlantı kullanıyorsak  ağ yapılandırması için ifconfig eth0 komutunu
+eğer kablosuz bağlantı kullanıyorsak kablosuz ağ yapılandırma bilgilerini görmek için ifconfig wlan0 komutunu kullanırız.
+Kablolu ve kablosuz bağlantı için kullandığınız ethernet ve wireless sürücüleriyle ilgili bilgi almak için de
+ethtool -i eth0 ve ethtool -i wlan0 komutlarını kullanabiliriz.
+
+Kullandığımız kablolu ya da kablosuz network kartı/ethernet (NIC) ile ilgili istatistiksel bilgileri öğrenmek için
+ethtool -S wlan0 kullanırız.
+
+Ağ yapılandırmamızı iki yöntemle yapabiliriz.
+Birincisi DHCP sunucudan (yerel ağda modem) otomatik olarak. Bunu yapmak için dhclient eth0 komutu kullanılır. 
+
+Diğer yöntem manuel olarak değer girerek. Bunu yapmak için örneğin yerel ip adresimizi 192.168.1.12 olarak ayarlamak için
+ifconfig eth0 192.168.1.12
+Kablosuz ağ için de ifconfig wlan0 192.168.1.12 komutu kullanılır.
+
+IP adresimizi ve alt ağ maskesi netmask değerini değiştirmek istersek
+ifconfig eth0 192.168.1.12 netmask 255.255.255.0 komutunu kullanırız.
+
+109) ip komutu
+
+
+
+
+
+
+
+
+
 
 
 
