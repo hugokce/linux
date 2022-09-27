@@ -2018,23 +2018,47 @@ Sürükle bırak, üstüne gelip alt klasör açma vs birçok işlem arayüz say
 
 Bölüm 22 WGET ile dosya indirme
 
-127)
+127) wget komutu
+Kullanımı wget parametre dosyayolu şeklindedir.
+wget kaldığı yerden devam etme özelliğindedir. Bunun için -c parametresi kullanılır.
+wget -c site.com/dosyaadi 
+Bir dizin ya da siteyi tamammen indirmek 
+wget -r siteadi  şeklindedir.  -r recursive demek
+wget -r http://www.facebook.com sonrasında www.facebook.com klasörü adıyla kaydedilir.
 
+Birden fazla indirme yapmak istediğimizde adresler txt içine saklanır ve şu şekilde indirilir.
+wget -i textdosyası.txt  şeklindedir.
 
+Sadece belirli dosyaları indirmek için -A parametresi kullanılır. Örneğin bir siteden sadece jpg ve png dosyalarını indirmek istiyorsak
+wget -r -A jpg,png site.com kullanılır.
+wget -r -A jpg,png http://www.9sn.net
 
+Belirli dosya türü haricindeki diğer dosyaları indirmek için -R (--reject) parametresi kullanılır.
+jpg ve png harici ne varsa indirmek için
+wget -r -R jpg,png site.com kullanılır.
 
+Bir hata durumunda indirme işlemini tekrarlaması için -t parametresi kullanılır
+wget -r -t6 site.com kullanılır. 
 
+Bölüm 23 Zamanlanmış Görevler
 
+Bazı log dosyalarının istediğimiz zaman aralığında silinmesini ya da belirlediğimiz bir eylemin yine belirlediğimiz bir zamanda yapılmasını ayarlayabilmek için
+cron servisini kullanırız.
 
+Sistemimizde cron servisinin durumunu kontrol etmek için
+service cron status kullanılır
 
+128) cron-crontab komutu
+Zamanlanmış işleri düzenlemek için crontab komutu kullanılır. Yani cron komutuyla cron dosyaları düzenlenebilir. Cron uygulaması yapılandırma dosyası 
+/etc/crontab dosyasıdır. 
+cat /etc/crontab ile içindeki görevler görülebilir.
 
-
-
-
-
-
-
-
+crontab -e ile düzenlemeyi yaparız. Bu komutu çalıştırınca bize hangi editörle açacağımız sorar
+1 /bin/nano
+2 /usr/bin/mcedit
+3 /usr/bin/vim.basic
+4 /usr/bin/vim.gtk
+5 /etc/bin/vim.tiny  
 
 
 
