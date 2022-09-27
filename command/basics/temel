@@ -1947,13 +1947,78 @@ SSH kullanılan sistemlerde dosya aktarımı yapmamızı sağlayan scp aracıdı
 scp /root/deneme root@192.168.43.2:/root komutu kullanılır.
 
 124) authorized_keys 
+Kali sisteme her bağlantı isteğinde şifre istememesi için porteusta anahtar oluşturup kaliye bunu kopyalamıştık. 
+Şimdi .ssh dizinine geçelim cat id_rsa.pub > authorized_keys komutuyla bu anahtarı authorized_keys dosyasına kopyalayalım.
+Üzerine yazmak istemezsek >> kullanalım.
+cd .ssh
+cat id_rsa.pub > authorized_keys
+cd 
+service ssh restart ile yeniden başlatalım
+
+Artık Kaliye bağlanırken şifre sormayacaktır.
+ssh root@192.168.43.2 
+
+124) putty 
+
+Linux'a Windows'tan bağlanmak istersek putty aracını kullanabiliriz.
+Linux makinede ssh servisi çalışıyorsa ve ip adresini biliyorsak putty çalıştırırız.
+
+192.168.2.6  port 22 deriz Bundan sonra kullanıcı adı ve parola sorar ve bilgileri girdiğimizde karşımıza terminal çıkar.
 
 
+125) sftp
 
+sftp ile uzak sunucuya bağlanıp ya da yerel ağda da dosya transferi yapılabilir. SSH bağlantısının sağlandığı sistemlerde sftp ile güvenli şekilde dosyalar
+taşınabilir. Yukarıda ssh ile bağlanıp scp ile dosya kopyalama yapmıştık. Şimdi ssh bağlantısı yapıldığını varsayalım. sftp kullanalım 
+sftp kullanıcı@host olarak yapabiliriz.  sftp root@kemal
+sftp kullaniciadi@ip_adresi   sftp root@192.168.43.2 gibi
 
+Bundan sonra şifreyi sorar. Giriş yapılır.
+ls ile linuxta lls ile kendi windowsta listeleme yaparız.
 
+Dosya transferi için put ve get komutları kullanılır. 
+Karşı bilgisayara dosya kopyalamak için put komutunu, kendi bilgisayarımıza dosya kopyalamak için get komutunu kullanırız. 
+put /root/Desktop/important.txt /root  komutu ile karşı bilgisayara kopyalama yaparız.
 
+get /root/test /root/Desktop komutu ile de karşıdaki test dosyasını kendi bilgisayarımıza kopyalamış oluruz.
 
+Dizin klasör kopyalamak için -r kullanılır.
+get -r Belgeler /root
+lls attığımızda Belgeler gelir.
+
+Benzer komutlar
+help:   Yardım komutudur. Tüm komutların ve bunların işlevlerinin listesini verir.
+put:    Karşı bilgisayara dosya kopyalamamıza yarar.
+get:    Karşı bilgisayardan kendi bilgisayarımıza dosya kopyalamamıza yarar.
+cd:     Karşı bilgisayarda klasör değiştirmemize yarar.
+lcd:    Kendi bilgisayarımızda klasör değiştirmemize yarar.
+rm:     Karşı bilgisayarda dosyayı siler.
+rmdir:  Karşı bilgisayarda klasörü siler.
+chmod:  Dosyalara ait kullanıcı izinlerini değiştirmemize yarar. 
+ls:     Karşı bilgisayardaki klasörün içeriğini gösterir
+lls:    Kendi bilgisayarımızda klasörün içeriğini gösterir.
+rename: Karşı bilgisayardaki dosyanın ismini değiştirir.
+mkdir:  Karşı bilgisayarda klasör oluşturur.
+lmkdir: Kendi bilgisayarımızda klasör oluşturur.
+
+Exit ile sftpden çıkabiliriz.
+
+126) filezilla
+
+Windows sistemden görsel arayüz kullanarak dosya transferi yapmak istersek ftp istemci programı olan filezilla kullanabiliriz.
+Programı kullanırken sunucu, kullanıcıadı, parola ve port numarası kısımlarını yazarız.
+sunucu adresi ip
+port yerine de 22 yazarız.
+Yine bağlantı yapılacak sistemde SSH servisi çalışıyor olmalı. Yani servis 22 portunu dinliyor olmalı.
+service ssh start
+
+sftp://192.168.43.2  kullanıcı adı root  parola girilir ve port numarası 22
+
+Sürükle bırak, üstüne gelip alt klasör açma vs birçok işlem arayüz sayesinde yapılabilir.
+
+Bölüm 22 WGET ile dosya indirme
+
+127)
 
 
 
