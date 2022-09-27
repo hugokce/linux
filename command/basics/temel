@@ -1906,10 +1906,47 @@ cat /etc/hosts
 
 Bölüm 21 SSH Servisi
 
-122)
+122) ssh komutu
+SSH iki sistem arasında ister yerel ağdaki bağlantıların isterse uzak bağlantıların güvenli bir şekilde yapılabilmesini sağlayan bir protokoldür. 
+Bağlantı yapılan iki sistem arasında tüm ağ trafiği şifrelenerek verilerin güvenliği sağlanır.
+
+Bağlantı yapılırken kullanıcı bilgileri sunucuya şifrelenmiş olarak gönderilir. Ayrıca kimlik doğrulama yapıldıktan sonra veri aktarımı olurken, istemci ve 
+sunucunun aralarında anlaşabildiği özel bir şifreleme ile bu veri transferi gerçekleştirilir. SSH bağlantısının yapılabilmesi için öncelikle bağlantı
+sağlanacak sistemlerde ssh servisinin çalışıyor olması gerekir. Örnekte Porteus Linux ile Kali linuxu konuşturmaya çalıştık
+
+Kalide ssh servisini başlatmak için
+service ssh start deriz. Sonra kontrol edelim
+service ssh status 
+Sonra kalide ip öğrenelim ifconfig ya da ifconfig wlan0 ile.
+Porteus'un ip adresini öğrenelim ifconfig ile. eth0dan görebiliriz.
+Porteus'ta da ssh servisini başlatalım
+chmod +x /etc/rc.d/rc.sshd önce çalıştırma yetkisi verelim sorun çıkmasın
+Sonra /etc/rc.d/rc.sshd start ile başlatalım
+
+Porteus'tan Kali'ye ssh yaparken permission denied uyarısı alırsak şu işlemi yapalım.
+Kali'de SSH servisinin yapılandırma dosyası /etc/ssh/sshd_config dosyasıdır. Bu dosyayı nano ile açalım 
+nano /etc/ssh/sshd_config diyelim
+Authentication kısmında PermitRootLogin without-password satırında without-password kısmını silip Yes yazalım.
+Kaydedip çıkalım. (CTRL+X   sonrasında Y ile onaylayalım)
+Sonra servisi başlatalım service ssh restart 
+Şimdi kimlik doğrulama anahtar çiftini oluşturmak için Porteus sistemde ssh-keygen -t rsa komutunu yazalım.
+Porteus'ta oluşturulan bu anahtarı scp komutuyla kaliye kopyalayalım. 
+scp /root/.ssh/id_rsa.pub root@192.168.43.2:/root/.ssh/id_rsa.pub  komutunu kullanırız. /root/.ssh altına kopyaladık 192.168.43.2 kali ipsidir
+Artık Porteus'tan Kaliye bağlanabiliriz. 
+ssh root@192.168.43.2
+ssh root@kemal
+ssh 192.168.43.2 komutlarıyla bağlanabiliriz.
+Çıkmak için de exit kullanırız.
+
+Kali'den Porteus'a bağlanmak için ssh root@porteus kullanırız.
 
 
+123) scp komutu
 
+SSH kullanılan sistemlerde dosya aktarımı yapmamızı sağlayan scp aracıdır. Kali'de /root altında yer alan deneme dosyamızı Porteus'a atalım
+scp /root/deneme root@192.168.43.2:/root komutu kullanılır.
+
+124) authorized_keys 
 
 
 
