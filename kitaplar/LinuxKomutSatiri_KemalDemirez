@@ -2062,6 +2062,99 @@ crontab -e ile düzenlemeyi yaparız. Bu komutu çalıştırınca bize hangi edi
 4 /usr/bin/vim.gtk
 5 /etc/bin/vim.tiny  
 
+Açılan dosyaya zamanlanmış görevlerle ilgili bilgiler yazılır. Hangi tarihte ne yapmasını istiyorsak ona göre ayarlamalar yaparız.
+
+Cron dosyalarında 6 tane alan vardır. 
+İlk 5 tanesi yapılması istenen işle ilgili gün, saat, dakika gibi bilgiler için son alan ise çalıştırılacak komut içindir.
+
+1. alan: İşin seçilen saat başında kaç dakika sonra başlatılacağını belirler (0-59) 30 demek saat başını 30 dk geçe demektir
+
+2. alan: İşin hangi saatte başlatılacağını belirler. (0-23) Sayı yerine * koyarsak her saat anlamına gelir.
+
+3. alan: İşin hangi günler başlatılacağını belirler. (1-31) Sayı yerine * koyarsak her gün anlamına gelir. 7,14 ifadesi de her ayın 7'si ve 14'ü
+anlamına gelir.
+
+4. alan: İşin hangi aylarda yapılacağını belirler. (1-12) Sayı yerine * koyarsak her ay anlamına gelir. 1,6 ifadesi Ocak ve Haziran demektir.
+1-3 ifadesi de Ocak, Şubat Mart demektir.
+
+5. alan: İşin haftanın hangi günlerinde yapılacağını belirler. (0-7) Sayı yerine * koyarsak her gün demektir. 0. ve 7. günler Pazar kabul edilir. 
+1,2 ifadesi Pazartesi ve Salı anlamına gelir. 1-3 ifadesi Pazartesi, Salı Çarşamba anlamına gelir.
+
+Yapılmasını istediğimiz işlerle ilgili satırları crontab -e ile açtığımız crontab dosyasının en altına ekleriz. Kaydedip çıktıktan sonra görev çalışmaya
+başlayacaktır. 
+
+Basit örnek yapalım
+
+Masaüstünde yer alan Aproce klasörümüzün /var/backup dizini altında Aproce.tgz şeklinde yedeklenmesi için kodumuzu yazalım
+Crontab dosyamızın en alt satırına
+0 22 * * * tar -zcf /var/backups/Aproce.tgz /root/Masaüstü/Aproce  
+Her gün saat 22:00'de /var/backup altına Aproce.tgz olarak yedekleyecektir.
+/var/backups altına baktığımızda ls ile saklanan dosyayı görürüz.
+
+file Aproce.tgz ile baktığımızda detaylara ulaşabiliriz.
+
+Zamanlanmış görevleri listelemek içn crontab -l komutunu kullanırız.
+
+Zamanlanmış görevleri silmek için crontab -r komutu kullanılır. 
+
+Bölüm 24 LOG Dosyaları
+
+Log (kayıt) dosyaları, sistemde yapılan işlerle ilgili kayıtların tutulduğu dosyalardır. Bu dosyalar /var/log dizini altında bulunurlar.
+Log dosyalarının bazıları sadece dosya halinde bulunurken bazıları da çeşitli altdizin ve klasörler olarak yer alırlar. Genelde bir servise ait log dosyası
+O servis adıyla kaydedilmiştir. auth.log dosyası kullanıcıların oturumlarıyla ilgili bilgiler barındırır.
+user.log dosyasında ise kullanıcı süreçleriyle ilgili kayıtlar yer alır.
+
+129) tail  messages
+Önemli sayılabilecek dosyalardan bir tanesi messages dosyasıdır. Bu dosyada sistemle ilgili birçok olayın kaydı tutulur. Messages dosyasına yapılan kayıtları
+terminalden canlı olarak takip etmek istersek tail -f /var/log/messages komutu kullanılır. 
+
+130) dmesg
+Sistem açılış esnasında ekrana açılış notları gönderir. Bu notlar çekirdek (kernel) log tamponuna yazılır. Bu çekirdek log mesajlarını görmek için 
+dmesg komutu kullanılır. 
+
+Herhangi bir kritere göre çekirdek mesajlarını listelemek istersek grep kullanabiliriz. 
+dmesg | grep fail
+Kernel log kayıtlarını silmek için dmesg -c komutunu kullanabiliriz.
+
+131) last komutu
+
+Sistemde en son oturum açan kullanıcıları listelemek için last komutu kullanılır. 
+Son 3 kullanıcı ile ilgili listeyi görmek için
+last -3 komutu kullanılır.
+
+Herhangi bir kullanıcı ile ilgili oturum açma bilgisini görmek için 
+last username kullanılır
+
+132) btmp komutu
+
+Login giriş hata kayıtları btmp dosyasında bulunur. Bu dosya bir data dosyası olduğundan bu tür dosyaların içeriğindeki stringleri listelemek için
+strings komutuyla beraber strings btmp şeklinde bir komut kullanarak dosya içeriğindeki yazdırılabilir ifadeleri görebiliriz.
+file btmp
+strings btmp komutu kullanılır.
+
+133) lastlog komutu
+
+Kullanıcıların en son ne zaman hangi adresten oturum açtıklarını listelemek için lastlog komutu kullanılabilir. Bu kullanıcılar sistem servislerini 
+kullanan kişiler de olabilir. Yani sistemde çalışan servisler bir kullanıcı tarafından hangi adresten giriş yapılarak kullanılmışsa ona ait bilgi de 
+yer alır. Herhangi bir kullanıcıya ait bilgi içinse
+lastlog -u username komutu kullanılır.
+
+134) utmp - wtmp komutuları
+
+Diğer iki önemli dosyamız /var/run/utmp ve /var/log/wtmp dosyalarıdır. Bu dosyalarda kullanıcılara ait oturum açma bilgileri tutulur. 
+Bu dosyalardan utmp dosyasında aktif oturumlara ilişkin kayıtlar, wtmp dosyasında ise geçmise ait aktif olmayan oturumlarla ilgili kayıtlar da yer alır.
+Bu iki dosya da data dosyası olduğundan herhangi bir metin editörüyle ya da cat komutuyla okunamaz. 
+Dosyaların içeriğindeki stringleri görmek için strings komutundan faydalanırız.
+
+file /var/run/utmp
+strings /var/run/utmp
+
+Aynı şekilde wtmp dosyasında bulunan ifadeleri görmek için
+strings /var/log/wtmp  komutunu kullanırız.
+
+135) lsof komutu
+
+
 
 
 
