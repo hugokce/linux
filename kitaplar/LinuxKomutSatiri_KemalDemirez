@@ -2154,12 +2154,29 @@ strings /var/log/wtmp  komutunu kullanırız.
 
 135) lsof komutu
 
+Süerçler tarafından oluşturulmuş dosyaları listelemek için lsof komutu kullanılabilir. Parametresiz kullanımda uzunca bir liste çıkacaktır. 
+Eğer -Pni (aktif bağlantıları listele, port ve hostname çözümlemesi yapma) parametresini kullanabiliriz. 
 
+lsof -Pni
 
+Örneğin bu komutun çıktısında mysql servisinin aktif olduğu ve dinlediği port bilgisi görülebilir. 
+service mysql stop deyip servisi durdurursak aktif listeden kalkar.
 
+Tüm port ve bağlantılar yerine sadece belirli bir port üzerindeki aktiviteyi görmek için
+lsof -i :portnumarası komutu kullanılır. 
 
+Belirli bir port aralığı ile ilgili servis aktivitelerini listelemek için de
+lsof -i :20-200 komutu kullanılabilir.
 
-______________________________________________________________________________________________________________________________________________________________
+service mysql start 
+lsof -i :3306 komutuyla görebiliriz
+
+Belli bir dizine erişim sağlayan kullanıcı ve süreçleri görmek için,
+örneğin /var/log dizini altındaki dosyalara erişim sağlayan kullanıcı ve süreçler için
+lsof +d /var/log komutu kullanılır.
+
+Kitabın sonu.
+
 ______________________________________________________________________________________________________________________________________________________________
 
 Kaynak
